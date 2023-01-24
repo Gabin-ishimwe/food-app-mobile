@@ -1,9 +1,30 @@
 import "package:flutter/material.dart";
 import "package:flutter_svg/flutter_svg.dart";
 import 'package:google_fonts/google_fonts.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({super.key});
+  var intros = [
+    {
+      image: "images/onboarding/order_confirmed.svg",
+      title: "Shop from your restaurant",
+      description:
+          "A diverse list of different dining restaurants throughout the territory and around your area carefully selected"
+    },
+    {
+      image: "images/onboarding/online_groceries.svg",
+      title: "Quick delivery to your doorstep",
+      description:
+          "We have dynamic and professional delivery team that is professionally and intelligently trained"
+    },
+    {
+      image: "images/onboarding/shopping_app.svg",
+      title: "Convenience eWallet app connecting",
+      description:
+          "A diverse list of different dining restaurants throughout the territory and around your area carefully selected"
+    },
+  ];
+  OnboardingScreen({super.key});
 
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
@@ -23,37 +44,77 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             flex: 6,
             child: Container(
               // color: Color.fromARGB(255, 255, 234, 233),
-              padding: EdgeInsets.all(18),
+              padding:
+                  EdgeInsets.only(top: 12, left: 18, right: 18, bottom: 18),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10.0),
                 color: Color.fromARGB(255, 255, 234, 233),
               ),
               child: Column(children: [
                 Align(
-                  child: Text(
-                    "Skip",
-                    style: GoogleFonts.poppins(
-                        textStyle: TextStyle(
-                      color: Color.fromARGB(255, 235, 53, 34),
-                      fontSize: 16,
-                    )),
+                  child: Container(
+                    margin: EdgeInsets.zero,
+                    child: TextButton(
+                      child: Text(
+                        "Skip",
+                        style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                          color: Color.fromARGB(255, 235, 53, 34),
+                          fontSize: 16,
+                        )),
+                      ),
+                      onPressed: (() {
+                        print("skip content-----");
+                      }),
+                      style: TextButton.styleFrom(padding: EdgeInsets.all(0)),
+                    ),
                   ),
                   alignment: Alignment.topRight,
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  child: SvgPicture.asset(
-                    "images/onboarding/online_groceries.svg",
-                    semanticsLabel: "logo",
-                    height: 250,
-                    width: 250,
+                Align(
+                  alignment: Alignment.center,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 40),
+                    child: SvgPicture.asset(
+                      "images/onboarding/order_confirmed.svg",
+                      semanticsLabel: "logo",
+                      height: 250,
+                      width: 250,
+                    ),
                   ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 8,
+                      width: 8,
+                      margin: EdgeInsets.only(right: 10),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color.fromARGB(255, 235, 53, 34),
+                      ),
+                    ),
+                    Container(
+                      height: 8,
+                      width: 8,
+                      margin: EdgeInsets.only(right: 10),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color.fromARGB(255, 255, 175, 171),
+                      ),
+                    ),
+                    Container(
+                      height: 8,
+                      width: 8,
+                      margin: EdgeInsets.only(right: 10),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Color.fromARGB(255, 255, 175, 171),
+                      ),
+                    ),
+                  ],
                 )
-                // Row(
-                //   children: [
-
-                //   ],
-                // )
               ]),
             ),
           ),

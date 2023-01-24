@@ -48,6 +48,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_svg: ^1.1.6
   google_fonts: ^3.0.1
+  carousel_slider: ^4.2.1
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
