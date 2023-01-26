@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
 import "package:flutter_svg/flutter_svg.dart";
 import 'package:food_book_mobile/models/onboarding_model.dart';
+import 'package:food_book_mobile/screens/welcome_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -12,6 +13,21 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
+  int currentIndex = 0;
+  PageController _controller = PageController();
+
+  @override
+  void initState() {
+    _controller = PageController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +37,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       body: Column(children: [
         Expanded(
           child: PageView.builder(
+              controller: _controller,
+              onPageChanged: (index) => {
+                    setState(
+                      () {
+                        currentIndex = index;
+                      },
+                    )
+                  },
               itemCount: onboardContents.length,
               itemBuilder: (_, index) {
                 return Container(
@@ -53,7 +77,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                       )),
                                     ),
                                     onPressed: (() {
-                                      print("skip content-----");
+                                      // skip onboarding
+                                      // navigate to other screen
+                                      Navigator.push(context, MaterialPageRoute(
+                                          builder: ((context) {
+                                        return WelcomeScreen();
+                                      })));
                                     }),
                                     style: TextButton.styleFrom(
                                         padding: EdgeInsets.all(0)),
@@ -76,37 +105,20 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 height: 30,
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Container(
-                                    height: 8,
-                                    width: 8,
-                                    margin: EdgeInsets.only(right: 10),
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Color.fromARGB(255, 235, 53, 34),
-                                    ),
-                                  ),
-                                  Container(
-                                    height: 8,
-                                    width: 8,
-                                    margin: EdgeInsets.only(right: 10),
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Color.fromARGB(255, 255, 175, 171),
-                                    ),
-                                  ),
-                                  Container(
-                                    height: 8,
-                                    width: 8,
-                                    margin: EdgeInsets.only(right: 10),
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Color.fromARGB(255, 255, 175, 171),
-                                    ),
-                                  ),
-                                ],
-                              )
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: List.generate(
+                                    onboardContents.length,
+                                    (index) => Container(
+                                        height: 10,
+                                        width: currentIndex == index ? 25 : 10,
+                                        margin: EdgeInsets.only(right: 5),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          color:
+                                              Color.fromARGB(255, 235, 53, 34),
+                                        )),
+                                  ))
                             ]),
                           ),
                         ),
@@ -121,8 +133,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                   // mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: [
                                     Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 20),
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: 20,
+                                      ),
                                       child: Text(
                                         onboardContents[index].title,
                                         style: GoogleFonts.poppins(
@@ -149,15 +162,24 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       ]),
                 );
               }),
-          flex: 9,
+          // flex: 9,
         ),
         Container(
           width: double.infinity,
           padding: EdgeInsets.all(20),
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              if (currentIndex == onboardContents.length - 1) {
+                // navigate on another screen
+                Navigator.push(context, MaterialPageRoute(builder: ((context) {
+                  return WelcomeScreen();
+                })));
+              }
+              _controller.nextPage(
+                  duration: Duration(milliseconds: 400), curve: Curves.ease);
+            },
             child: Text(
-              "Next",
+              currentIndex == onboardContents.length - 1 ? "Continue" : "Next",
               style: GoogleFonts.poppins(
                   textStyle: TextStyle(
                     fontWeight: FontWeight.bold,
