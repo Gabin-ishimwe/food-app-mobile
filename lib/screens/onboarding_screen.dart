@@ -30,7 +30,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return SafeArea(
+        child: Scaffold(
       // appBar: AppBar(title: Text("Flutter Demo")),
       //   body: Container(
       // padding: EdgeInsets.only(top: 35, right: 20, left: 20, bottom: 20),
@@ -48,8 +49,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               itemCount: onboardContents.length,
               itemBuilder: (_, index) {
                 return Container(
-                  padding:
-                      EdgeInsets.only(top: 35, right: 20, left: 20, bottom: 20),
+                  padding: EdgeInsets.all(20),
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -65,17 +65,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                             child: Column(children: [
                               Align(
+                                alignment: Alignment.topRight,
                                 child: Container(
                                   margin: EdgeInsets.zero,
                                   child: TextButton(
-                                    child: Text(
-                                      "Skip",
-                                      style: GoogleFonts.poppins(
-                                          textStyle: TextStyle(
-                                        color: Color.fromARGB(255, 235, 53, 34),
-                                        fontSize: 16,
-                                      )),
-                                    ),
                                     onPressed: (() {
                                       // skip onboarding
                                       // navigate to other screen
@@ -85,10 +78,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                       })));
                                     }),
                                     style: TextButton.styleFrom(
-                                        padding: EdgeInsets.all(0)),
+                                        padding: EdgeInsets.all(0),
+                                        splashFactory: NoSplash.splashFactory),
+                                    child: Text(
+                                      "Skip",
+                                      style: GoogleFonts.poppins(
+                                          textStyle: TextStyle(
+                                        color: Color.fromARGB(255, 235, 53, 34),
+                                        fontSize: 16,
+                                      )),
+                                    ),
                                   ),
                                 ),
-                                alignment: Alignment.topRight,
                               ),
                               Align(
                                 alignment: Alignment.center,
@@ -178,6 +179,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               _controller.nextPage(
                   duration: Duration(milliseconds: 400), curve: Curves.ease);
             },
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromARGB(255, 235, 53, 34),
+                padding: EdgeInsets.all(14),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(8)))),
             child: Text(
               currentIndex == onboardContents.length - 1 ? "Continue" : "Next",
               style: GoogleFonts.poppins(
@@ -187,34 +193,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                   fontSize: 20),
             ),
-            style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 235, 53, 34),
-                padding: EdgeInsets.all(14),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8)))),
           ),
         )
-        // Expanded(
-        //   child: ElevatedButton(
-        //     onPressed: () {},
-        //     child: Text(
-        //       "Next",
-        //       style: GoogleFonts.poppins(
-        //           textStyle: TextStyle(
-        //             fontWeight: FontWeight.bold,
-        //             color: Colors.white,
-        //           ),
-        //           fontSize: 20),
-        //     ),
-        //     style: ElevatedButton.styleFrom(
-        //         backgroundColor: Color.fromARGB(255, 235, 53, 34),
-        //         padding: EdgeInsets.all(14),
-        //         shape: RoundedRectangleBorder(
-        //             borderRadius: BorderRadius.all(Radius.circular(8)))),
-        //   ),
-        //   flex: 1,
-        // )
       ]),
-    );
+    ));
   }
 }
