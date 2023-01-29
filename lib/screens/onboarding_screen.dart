@@ -30,172 +30,189 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeigth = MediaQuery.of(context).size.height;
     return SafeArea(
         child: Scaffold(
-      // appBar: AppBar(title: Text("Flutter Demo")),
-      //   body: Container(
-      // padding: EdgeInsets.only(top: 35, right: 20, left: 20, bottom: 20),
-      body: Column(children: [
-        Expanded(
-          child: PageView.builder(
-              controller: _controller,
-              onPageChanged: (index) => {
-                    setState(
-                      () {
-                        currentIndex = index;
+      body: Container(
+        width: screenWidth,
+        height: screenHeigth,
+        child: Column(children: [
+          Container(
+            height: screenHeigth * (0.85), // take 85% of screen
+            child: Expanded(
+              child: PageView.builder(
+                  controller: _controller,
+                  onPageChanged: (index) => {
+                        setState(
+                          () {
+                            currentIndex = index;
+                          },
+                        )
                       },
-                    )
-                  },
-              itemCount: onboardContents.length,
-              itemBuilder: (_, index) {
-                return Container(
-                  padding: EdgeInsets.all(20),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Expanded(
-                          flex: 7,
-                          child: Container(
-                            // color: Color.fromARGB(255, 255, 234, 233),
-                            padding: EdgeInsets.only(
-                                top: 12, left: 18, right: 18, bottom: 18),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10.0),
-                              color: Color.fromARGB(255, 255, 234, 233),
+                  itemCount: onboardContents.length,
+                  itemBuilder: (_, index) {
+                    return Container(
+                      padding: const EdgeInsets.all(20),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Expanded(
+                              flex: 7,
+                              child: Container(
+                                padding: const EdgeInsets.all(15),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  color:
+                                      const Color.fromARGB(255, 255, 234, 233),
+                                ),
+                                child: Column(children: [
+                                  Align(
+                                    alignment: Alignment.topRight,
+                                    child: Container(
+                                      margin: EdgeInsets.zero,
+                                      child: TextButton(
+                                        onPressed: (() {
+                                          // skip onboarding
+                                          // navigate to other screen
+                                          Navigator.push(context,
+                                              MaterialPageRoute(
+                                                  builder: ((context) {
+                                            return const WelcomeScreen();
+                                          })));
+                                        }),
+                                        style: TextButton.styleFrom(
+                                            padding: const EdgeInsets.all(0),
+                                            splashFactory:
+                                                NoSplash.splashFactory),
+                                        child: Text(
+                                          "Skip",
+                                          style: GoogleFonts.poppins(
+                                              textStyle: const TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 235, 53, 34),
+                                            fontSize: 16,
+                                          )),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.center,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10),
+                                      child: SvgPicture.asset(
+                                        onboardContents[index].image,
+                                        semanticsLabel: "logo",
+                                        height: 250,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 30,
+                                  ),
+                                  Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: List.generate(
+                                        onboardContents.length,
+                                        (index) => Container(
+                                            height: 10,
+                                            width:
+                                                currentIndex == index ? 25 : 10,
+                                            margin:
+                                                const EdgeInsets.only(right: 5),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              color: const Color.fromARGB(
+                                                  255, 235, 53, 34),
+                                            )),
+                                      ))
+                                ]),
+                              ),
                             ),
-                            child: Column(children: [
-                              Align(
-                                alignment: Alignment.topRight,
-                                child: Container(
-                                  margin: EdgeInsets.zero,
-                                  child: TextButton(
-                                    onPressed: (() {
-                                      // skip onboarding
-                                      // navigate to other screen
-                                      Navigator.push(context, MaterialPageRoute(
-                                          builder: ((context) {
-                                        return WelcomeScreen();
-                                      })));
-                                    }),
-                                    style: TextButton.styleFrom(
-                                        padding: EdgeInsets.all(0),
-                                        splashFactory: NoSplash.splashFactory),
-                                    child: Text(
-                                      "Skip",
-                                      style: GoogleFonts.poppins(
-                                          textStyle: TextStyle(
-                                        color: Color.fromARGB(255, 235, 53, 34),
-                                        fontSize: 16,
-                                      )),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                alignment: Alignment.center,
+                            Expanded(
+                                flex: 3,
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 10),
-                                  child: SvgPicture.asset(
-                                    onboardContents[index].image,
-                                    semanticsLabel: "logo",
-                                    height: 250,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 30,
-                              ),
-                              Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: List.generate(
-                                    onboardContents.length,
-                                    (index) => Container(
-                                        height: 10,
-                                        width: currentIndex == index ? 25 : 10,
-                                        margin: EdgeInsets.only(right: 5),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          color:
-                                              Color.fromARGB(255, 235, 53, 34),
-                                        )),
-                                  ))
-                            ]),
-                          ),
-                        ),
-                        Expanded(
-                            flex: 3,
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(vertical: 15),
-                              child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  mainAxisSize: MainAxisSize.max,
-                                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: 20,
-                                      ),
-                                      child: Text(
-                                        onboardContents[index].title,
-                                        style: GoogleFonts.poppins(
-                                            textStyle: TextStyle(
-                                                fontSize: 26,
-                                                fontWeight: FontWeight.bold)),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 20, vertical: 8),
-                                      child: Text(
-                                        onboardContents[index].description,
-                                        style: GoogleFonts.poppins(
-                                            textStyle: TextStyle(
-                                                color: Color.fromARGB(
-                                                    255, 150, 150, 150))),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  ]),
-                            )),
-                      ]),
-                );
-              }),
-          // flex: 9,
-        ),
-        Container(
-          width: double.infinity,
-          padding: EdgeInsets.all(20),
-          child: ElevatedButton(
-            onPressed: () {
-              if (currentIndex == onboardContents.length - 1) {
-                // navigate on another screen
-                Navigator.push(context, MaterialPageRoute(builder: ((context) {
-                  return WelcomeScreen();
-                })));
-              }
-              _controller.nextPage(
-                  duration: Duration(milliseconds: 400), curve: Curves.ease);
-            },
-            style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 235, 53, 34),
-                padding: EdgeInsets.all(14),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(8)))),
-            child: Text(
-              currentIndex == onboardContents.length - 1 ? "Continue" : "Next",
-              style: GoogleFonts.poppins(
-                  textStyle: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                  fontSize: 20),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 15),
+                                  child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
+                                      mainAxisSize: MainAxisSize.max,
+                                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 20,
+                                          ),
+                                          child: Text(
+                                            onboardContents[index].title,
+                                            style: GoogleFonts.poppins(
+                                                textStyle: const TextStyle(
+                                                    fontSize: 26,
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 20, vertical: 5),
+                                          child: Text(
+                                            onboardContents[index].description,
+                                            style: GoogleFonts.poppins(
+                                                textStyle: const TextStyle(
+                                                    color: Color.fromARGB(
+                                                        255, 150, 150, 150))),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                      ]),
+                                )),
+                          ]),
+                    );
+                  }),
             ),
           ),
-        )
-      ]),
+          Container(
+            width: screenWidth,
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
+            child: ElevatedButton(
+              onPressed: () {
+                if (currentIndex == onboardContents.length - 1) {
+                  // navigate on another screen
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: ((context) {
+                    return const WelcomeScreen();
+                  })));
+                }
+                _controller.nextPage(
+                    duration: const Duration(milliseconds: 400),
+                    curve: Curves.ease);
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 235, 53, 34),
+                  padding: const EdgeInsets.all(14),
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(8)))),
+              child: Text(
+                currentIndex == onboardContents.length - 1
+                    ? "Continue"
+                    : "Next",
+                style: GoogleFonts.poppins(
+                    textStyle: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                    fontSize: 20),
+              ),
+            ),
+          )
+        ]),
+      ),
     ));
   }
 }

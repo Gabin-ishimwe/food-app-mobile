@@ -1,5 +1,3 @@
-import 'dart:js';
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -16,16 +14,18 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       100; // min pixel/second to be considered as screen scroll
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return SafeArea(
         child: GestureDetector(
       onPanEnd: (details) {
-        // scroll down pixelPerSecond increase
+        // scroll up pixelPerSecond increase
         if (details.velocity.pixelsPerSecond.dy > thresholdScroll) {
           setState(() {
             showBottomMenu = true;
           });
         }
-        // scroll up pixelPerSecond descrease
+        // scroll down pixelPerSecond descrease
         else if (details.velocity.pixelsPerSecond.dy < -thresholdScroll) {
           setState(() {
             showBottomMenu = false;
@@ -37,10 +37,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         children: [
           Container(
               margin: EdgeInsets.all(20),
+              width: screenWidth,
+              height: screenHeight,
               child: Column(
                 children: [
-                  Expanded(
-                    flex: 7,
+                  Container(
+                    height: screenHeight * 0.65,
                     child: Container(
                       padding: EdgeInsets.all(30),
                       decoration: BoxDecoration(
@@ -71,8 +73,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                     ),
                   ),
                   Padding(padding: EdgeInsets.symmetric(vertical: 8)),
-                  Expanded(
-                    flex: 3,
+                  Container(
+                    height: screenHeight * 0.35,
                     child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
