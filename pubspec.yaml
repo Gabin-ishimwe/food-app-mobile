@@ -66,6 +66,8 @@ flutter:
     - images/onboarding/order_confirmed.svg
     - images/onboarding/online_groceries.svg
     - images/onboarding/shopping_app.svg
+    - images/welcome_screen/background.png
+    - images/welcome_screen/google.png
     # - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
