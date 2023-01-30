@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_book_mobile/screens/sign_in_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -85,7 +86,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            print("new account");
+                          },
                           style: ElevatedButton.styleFrom(
                               backgroundColor:
                                   const Color.fromARGB(255, 235, 53, 34),
@@ -106,7 +109,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         const Padding(
                             padding: EdgeInsets.symmetric(vertical: 8)),
                         OutlinedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return SignInScreen();
+                            }));
+                          },
                           style: OutlinedButton.styleFrom(
                               backgroundColor: Colors.white,
                               side: const BorderSide(
@@ -181,9 +189,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       ])
                 ],
               )),
-          Opacity(
-            opacity: showBottomMenu ? 1.0 : 0,
-            child: Container(color: Colors.black.withOpacity(0.3)),
+          IgnorePointer(
+            child: Opacity(
+              opacity: showBottomMenu ? 1.0 : 0,
+              child: Container(color: Colors.black.withOpacity(0.3)),
+            ),
           ),
           // menu widgets
           AnimatedPositioned(
@@ -252,7 +262,9 @@ class SocialMenuWidget extends StatelessWidget {
           ),
           const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
           OutlinedButton(
-            onPressed: () {},
+            onPressed: () {
+              print("sign in ");
+            },
             style: OutlinedButton.styleFrom(
                 backgroundColor: Colors.white,
                 side: const BorderSide(
