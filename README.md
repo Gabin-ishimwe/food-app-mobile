@@ -1,10 +1,13 @@
 # Food Book Mobile
 
-![onboarding_page](./images/readme/onboarding_1.png)
-![onboarding_page](./images/readme/onboarding_2.png)
-![onboarding_page](./images/readme/onboarding_3.png)
-![onboarding_page](./images/readme/welcome_1.png)
-![onboarding_page](./images/readme/welcome_2.png)
+<p float="left">
+  <img src="./images/readme/onboarding_1.png" width="100" />
+  <img src="./images/readme/onboarding_2.png" width="100" /> 
+  <img src="./images/readme/onboarding_3.png" width="100" />
+  <img src="./images/readme/welcome_1.png" width="100" />
+  <img src="./images/readme/welcome_2.png" width="100" />
+  
+</p>
 
 ## Authors
 
