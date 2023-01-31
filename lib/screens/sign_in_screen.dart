@@ -35,20 +35,20 @@ class _SignInScreenState extends State<SignInScreen> {
           const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
           Text("Sign in",
               style: GoogleFonts.poppins(
-                  fontWeight: FontWeight.bold, fontSize: 28)),
+                  fontWeight: FontWeight.bold, fontSize: 24)),
           // Padding(padding: EdgeInsets.symmetric(vertical: 8)),
           Row(
             children: [
               Text(
                 "New user?",
                 style: GoogleFonts.poppins(
-                    color: const Color(0xFF828282), fontSize: 14),
+                    color: const Color(0xFF828282), fontSize: 12),
               ),
               const Padding(padding: EdgeInsets.symmetric(horizontal: 2)),
               Text(
                 "Create account",
                 style: GoogleFonts.poppins(
-                    color: const Color(0xFF0E7DE3), fontSize: 16),
+                    color: const Color(0xFF0E7DE3), fontSize: 14),
               )
             ],
           ),
@@ -58,7 +58,7 @@ class _SignInScreenState extends State<SignInScreen> {
             children: [
               Text(
                 "Email",
-                style: GoogleFonts.poppins(fontSize: 16),
+                style: GoogleFonts.poppins(fontSize: 12),
               ),
               TextFormField(
                 decoration: InputDecoration(
@@ -70,8 +70,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         borderSide: BorderSide(color: Colors.blue, width: 3)),
                     hintText: "Enter your email",
                     hintStyle: GoogleFonts.poppins(
-                      color: const Color(0xFF828282),
-                    )),
+                        color: const Color(0xFF828282), fontSize: 14)),
               )
             ],
           ),
@@ -81,24 +80,22 @@ class _SignInScreenState extends State<SignInScreen> {
             children: [
               Text(
                 "Password",
-                style: GoogleFonts.poppins(fontSize: 16),
+                style: GoogleFonts.poppins(fontSize: 12),
               ),
               TextFormField(
                 obscureText: true,
                 decoration: InputDecoration(
-                    enabledBorder: const UnderlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color(0xFFEBEBEB), width: 3),
-                    ),
-                    focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue, width: 3)),
-                    hintText: "Enter your password",
-                    hintStyle: GoogleFonts.poppins(
-                      color: const Color(0xFF828282),
-                    ),
-                    suffixIcon: Icon(Icons.remove_red_eye_rounded),
-                    suffixIconColor: 
-                    ),
+                  enabledBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Color(0xFFEBEBEB), width: 3),
+                  ),
+                  focusedBorder: const UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.blue, width: 3)),
+                  hintText: "Enter your password",
+                  hintStyle: GoogleFonts.poppins(
+                      color: const Color(0xFF828282), fontSize: 14),
+                  suffixIcon: Icon(Icons.remove_red_eye_rounded),
+                  // suffixIconColor:
+                ),
               )
             ],
           ),
@@ -120,7 +117,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                   ),
-                  fontSize: 18),
+                  fontSize: 16),
             ),
           ),
         ]),

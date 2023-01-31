@@ -28,6 +28,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         child: GestureDetector(
       onPanEnd: (details) {
         // scroll up pixelPerSecond increase
+        print(details);
         if (details.velocity.pixelsPerSecond.dy > thresholdScroll) {
           setState(() {
             showBottomMenu = true;
@@ -67,7 +68,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                               style: GoogleFonts.poppins(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 26),
+                                  fontSize: 24),
                             ),
                             const Padding(
                                 padding: EdgeInsets.symmetric(vertical: 4)),
@@ -76,12 +77,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                               style: GoogleFonts.poppins(
                                   color: Colors.white,
                                   fontWeight: FontWeight.normal,
-                                  fontSize: 16),
+                                  fontSize: 14),
                             )
                           ]),
                     ),
                   ),
-                  const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
+                  const Padding(padding: EdgeInsets.symmetric(vertical: 6)),
                   Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
@@ -103,11 +104,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white,
                                 ),
-                                fontSize: 18),
+                                fontSize: 16),
                           ),
                         ),
                         const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 8)),
+                            padding: EdgeInsets.symmetric(vertical: 6)),
                         OutlinedButton(
                           onPressed: () {
                             Navigator.push(context,
@@ -129,11 +130,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             style: GoogleFonts.poppins(
                                 color: const Color.fromARGB(255, 235, 53, 34),
                                 fontWeight: FontWeight.bold,
-                                fontSize: 18),
+                                fontSize: 16),
                           ),
                         ),
                         const Padding(
-                            padding: EdgeInsets.symmetric(vertical: 8)),
+                            padding: EdgeInsets.symmetric(vertical: 6)),
                         OutlinedButton(
                           onPressed: () {},
                           style: OutlinedButton.styleFrom(
@@ -158,7 +159,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                 style: GoogleFonts.poppins(
                                     textStyle: const TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 18,
+                                        fontSize: 16,
                                         color: Colors.black)),
                               ),
                             ],
@@ -180,7 +181,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                               child: Text(
                                 "Show more",
                                 style: GoogleFonts.poppins(
-                                    fontSize: 18,
+                                    fontSize: 16,
                                     color: const Color.fromARGB(
                                         255, 171, 171, 171),
                                     fontWeight: FontWeight.w500),
@@ -260,10 +261,12 @@ class SocialMenuWidget extends StatelessWidget {
                   fontSize: 18),
             ),
           ),
-          const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 6)),
           OutlinedButton(
             onPressed: () {
-              print("sign in ");
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return SignInScreen();
+              }));
             },
             style: OutlinedButton.styleFrom(
                 backgroundColor: Colors.white,
@@ -277,10 +280,10 @@ class SocialMenuWidget extends StatelessWidget {
               style: GoogleFonts.poppins(
                   color: const Color.fromARGB(255, 235, 53, 34),
                   fontWeight: FontWeight.bold,
-                  fontSize: 18),
+                  fontSize: 16),
             ),
           ),
-          const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 6)),
           OutlinedButton(
             onPressed: () {},
             style: OutlinedButton.styleFrom(
@@ -301,13 +304,13 @@ class SocialMenuWidget extends StatelessWidget {
                   style: GoogleFonts.poppins(
                       textStyle: const TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 18,
+                          fontSize: 16,
                           color: Colors.black)),
                 ),
               ],
             ),
           ),
-          const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 6)),
           ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
@@ -325,13 +328,13 @@ class SocialMenuWidget extends StatelessWidget {
                   style: GoogleFonts.poppins(
                       textStyle: const TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 18,
+                          fontSize: 16,
                           color: Colors.white)),
                 ),
               ],
             ),
           ),
-          const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
+          const Padding(padding: EdgeInsets.symmetric(vertical: 6)),
           ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
@@ -349,7 +352,7 @@ class SocialMenuWidget extends StatelessWidget {
                   style: GoogleFonts.poppins(
                       textStyle: const TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 18,
+                          fontSize: 16,
                           color: Colors.white)),
                 ),
               ],
@@ -367,7 +370,7 @@ class SocialMenuWidget extends StatelessWidget {
                 child: Text(
                   "Show less",
                   style: GoogleFonts.poppins(
-                      fontSize: 18,
+                      fontSize: 16,
                       color: const Color.fromARGB(255, 171, 171, 171),
                       fontWeight: FontWeight.w500),
                 ),

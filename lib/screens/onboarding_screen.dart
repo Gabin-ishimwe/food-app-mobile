@@ -39,7 +39,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         height: screenHeigth,
         child: Column(children: [
           Container(
-            height: screenHeigth * (0.85), // take 85% of screen
+            height: screenHeigth * (0.86), // take 85% of screen
             child: Expanded(
               child: PageView.builder(
                   controller: _controller,
@@ -91,7 +91,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                               textStyle: const TextStyle(
                                             color: Color.fromARGB(
                                                 255, 235, 53, 34),
-                                            fontSize: 16,
+                                            fontSize: 14,
                                           )),
                                         ),
                                       ),
@@ -152,7 +152,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                             onboardContents[index].title,
                                             style: GoogleFonts.poppins(
                                                 textStyle: const TextStyle(
-                                                    fontSize: 26,
+                                                    fontSize: 24,
                                                     fontWeight:
                                                         FontWeight.bold)),
                                             textAlign: TextAlign.center,
@@ -179,7 +179,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           ),
           Container(
             width: screenWidth,
-            padding: const EdgeInsets.only(left: 20, right: 20, top: 15),
+            padding: const EdgeInsets.only(left: 20, right: 20, top: 0),
             child: ElevatedButton(
               onPressed: () {
                 if (currentIndex == onboardContents.length - 1) {
