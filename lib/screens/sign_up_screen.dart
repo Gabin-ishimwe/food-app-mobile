@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:food_book_mobile/screens/sign_up_screen.dart';
+import 'package:food_book_mobile/screens/sign_in_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
   var toggle = true;
@@ -40,14 +40,14 @@ class _SignInScreenState extends State<SignInScreen> {
               child: const Icon(Icons.arrow_left, color: Color(0xFFF55349)),
             ),
             const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
-            Text("Sign in",
+            Text("Sign up",
                 style: GoogleFonts.poppins(
                     fontWeight: FontWeight.bold, fontSize: 24)),
             // Padding(padding: EdgeInsets.symmetric(vertical: 8)),
             Row(
               children: [
                 Text(
-                  "New user?",
+                  "Arleady have an account?",
                   style: GoogleFonts.poppins(
                       color: const Color(0xFF828282), fontSize: 12),
                 ),
@@ -59,11 +59,11 @@ class _SignInScreenState extends State<SignInScreen> {
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) {
-                      return SignUpScreen();
+                      return SignInScreen();
                     }));
                   },
                   child: Text(
-                    "Create account",
+                    "Sign in",
                     style: GoogleFonts.poppins(
                         color: const Color(0xFF0E7DE3), fontSize: 14),
                   ),

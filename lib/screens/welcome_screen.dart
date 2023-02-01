@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_book_mobile/screens/sign_in_screen.dart';
+import 'package:food_book_mobile/screens/sign_up_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -88,7 +89,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            print("new account");
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return SignUpScreen();
+                            }));
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor:
@@ -101,7 +105,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             "Create a new account",
                             style: GoogleFonts.poppins(
                                 textStyle: const TextStyle(
-                                  fontWeight: FontWeight.bold,
+                                  fontWeight: FontWeight.w600,
                                   color: Colors.white,
                                 ),
                                 fontSize: 16),
@@ -129,7 +133,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                             "Sign in",
                             style: GoogleFonts.poppins(
                                 color: const Color.fromARGB(255, 235, 53, 34),
-                                fontWeight: FontWeight.bold,
+                                fontWeight: FontWeight.w600,
                                 fontSize: 16),
                           ),
                         ),
@@ -158,7 +162,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                 "Continue with Google",
                                 style: GoogleFonts.poppins(
                                     textStyle: const TextStyle(
-                                        fontWeight: FontWeight.bold,
+                                        fontWeight: FontWeight.w600,
                                         fontSize: 16,
                                         color: Colors.black)),
                               ),
@@ -245,7 +249,11 @@ class SocialMenuWidget extends StatelessWidget {
           ),
           const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return SignUpScreen();
+              }));
+            },
             style: ElevatedButton.styleFrom(
                 backgroundColor: const Color.fromARGB(255, 235, 53, 34),
                 padding: const EdgeInsets.all(14),
@@ -255,10 +263,10 @@ class SocialMenuWidget extends StatelessWidget {
               "Create a new account",
               style: GoogleFonts.poppins(
                   textStyle: const TextStyle(
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w600,
                     color: Colors.white,
                   ),
-                  fontSize: 18),
+                  fontSize: 16),
             ),
           ),
           const Padding(padding: EdgeInsets.symmetric(vertical: 6)),
@@ -279,7 +287,7 @@ class SocialMenuWidget extends StatelessWidget {
               "Sign in",
               style: GoogleFonts.poppins(
                   color: const Color.fromARGB(255, 235, 53, 34),
-                  fontWeight: FontWeight.bold,
+                  fontWeight: FontWeight.w600,
                   fontSize: 16),
             ),
           ),
@@ -303,7 +311,7 @@ class SocialMenuWidget extends StatelessWidget {
                   "Continue with Google",
                   style: GoogleFonts.poppins(
                       textStyle: const TextStyle(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                           fontSize: 16,
                           color: Colors.black)),
                 ),
@@ -327,7 +335,7 @@ class SocialMenuWidget extends StatelessWidget {
                   "Facebook",
                   style: GoogleFonts.poppins(
                       textStyle: const TextStyle(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                           fontSize: 16,
                           color: Colors.white)),
                 ),
@@ -351,7 +359,7 @@ class SocialMenuWidget extends StatelessWidget {
                   "Apple",
                   style: GoogleFonts.poppins(
                       textStyle: const TextStyle(
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w600,
                           fontSize: 16,
                           color: Colors.white)),
                 ),

@@ -204,10 +204,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     : "Next",
                 style: GoogleFonts.poppins(
                     textStyle: const TextStyle(
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w600,
                       color: Colors.white,
                     ),
-                    fontSize: 20),
+                    fontSize: 18),
               ),
             ),
           )

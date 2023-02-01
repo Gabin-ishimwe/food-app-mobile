@@ -50,6 +50,7 @@ dev_dependencies:
   google_fonts: ^3.0.1
   carousel_slider: ^4.2.1
   intro_slider: ^4.2.0
+  email_validator: "^2.1.16"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
