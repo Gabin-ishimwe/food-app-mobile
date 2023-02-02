@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_book_mobile/screens/contact_screen.dart';
 import 'package:food_book_mobile/screens/sign_in_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
@@ -13,6 +14,8 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
+  var firstNameController = TextEditingController();
+  var lastNameController = TextEditingController();
   var toggle = true;
   var formState = GlobalKey<FormState>();
   @override
@@ -70,7 +73,65 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 )
               ],
             ),
-            const Padding(padding: EdgeInsets.symmetric(vertical: 16)),
+            const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "First name",
+                  style: GoogleFonts.poppins(fontSize: 12),
+                ),
+                TextFormField(
+                  controller: firstNameController,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Enter your first name";
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                      enabledBorder: const UnderlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Color(0xFFEBEBEB), width: 3),
+                      ),
+                      focusedBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue, width: 3)),
+                      hintText: "Enter your first name",
+                      hintStyle: GoogleFonts.poppins(
+                          color: const Color(0xFF828282), fontSize: 14)),
+                )
+              ],
+            ),
+            const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Last name",
+                  style: GoogleFonts.poppins(fontSize: 12),
+                ),
+                TextFormField(
+                  controller: lastNameController,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Enter your last name";
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                      enabledBorder: const UnderlineInputBorder(
+                        borderSide:
+                            BorderSide(color: Color(0xFFEBEBEB), width: 3),
+                      ),
+                      focusedBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.blue, width: 3)),
+                      hintText: "Enter your last name",
+                      hintStyle: GoogleFonts.poppins(
+                          color: const Color(0xFF828282), fontSize: 14)),
+                )
+              ],
+            ),
+            const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -103,7 +164,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 )
               ],
             ),
-            const Padding(padding: EdgeInsets.symmetric(vertical: 12)),
+            const Padding(padding: EdgeInsets.symmetric(vertical: 8)),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -157,8 +218,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
               onPressed: () {
                 if (formState.currentState!.validate()) {
                   print("success");
-                  emailController.clear();
-                  passwordController.clear();
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return ContactScreen();
+                  }));
                 }
               },
               style: ElevatedButton.styleFrom(

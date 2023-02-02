@@ -70,7 +70,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 )
               ],
             ),
-            const Padding(padding: EdgeInsets.symmetric(vertical: 16)),
+            const Padding(padding: EdgeInsets.symmetric(vertical: 10)),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
