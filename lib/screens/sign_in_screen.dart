@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_book_mobile/screens/home_screen.dart';
 import 'package:food_book_mobile/screens/sign_up_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
@@ -157,8 +158,11 @@ class _SignInScreenState extends State<SignInScreen> {
               onPressed: () {
                 if (formState.currentState!.validate()) {
                   print("success");
-                  emailController.clear();
-                  passwordController.clear();
+                  // emailController.clear();
+                  // passwordController.clear();
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return HomeScreen();
+                  }));
                 }
               },
               style: ElevatedButton.styleFrom(
