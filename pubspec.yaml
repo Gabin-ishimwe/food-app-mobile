@@ -53,6 +53,10 @@ dev_dependencies:
   email_validator: "^2.1.16"
   mask_text_input_formatter: ^2.4.0
   device_preview: ^1.1.0
+  flutter_native_splash: ^2.2.17
+
+flutter_native_splash:
+  color: "#ffffff"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
