@@ -52,7 +52,9 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Container(
           color: Color(0xFFF55349),
           padding: EdgeInsets.all(20),
-          child: Stack(children: [
+          height: double.infinity,
+          // width: double.infinity,
+          child: Stack(clipBehavior: Clip.none, children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -94,8 +96,8 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             Positioned(
-              // bottom: 0,
-              // top: 50,
+              bottom: -40,
+              // left: 0,
               child: TextFormField(
                 decoration: InputDecoration(
                     prefixIcon: Icon(
@@ -108,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             width: 0,
                             color: Colors.white,
                             style: BorderStyle.none)),
-                    fillColor: Colors.white,
+                    fillColor: Colors.black,
                     filled: true,
                     hintText: "Search dish name, restaurant",
                     contentPadding: EdgeInsets.all(10),
