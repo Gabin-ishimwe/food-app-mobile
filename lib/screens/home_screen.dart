@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_book_mobile/widgets/popular_area_widget.dart';
+import 'package:food_book_mobile/widgets/popular_dishes_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,7 +18,11 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(20),
-          child: Column(children: const [PopularAreaWidget()]),
+          child: Column(children: const [
+            PopularAreaWidget(),
+            Padding(padding: EdgeInsets.only(top: 10)),
+            PopularDishesWidget()
+          ]),
         ),
       ),
     ));
