@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_book_mobile/widgets/popular_area_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,31 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(20),
-          child: Column(children: const [
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: [
-            //     Row(
-            //       children: [
-            //         Icon(
-            //           Icons.emoji_emotions,
-            //           color: Color(0xFFE8362B),
-            //         ),
-            //         Padding(padding: EdgeInsets.symmetric(horizontal: 5)),
-            //         Text(
-            //           "Hello, Daniels!",
-            //           style:
-            //               TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-            //         )
-            //       ],
-            //     ),
-            //     Icon(
-            //       Icons.notifications_active,
-            //       color: Color(0xFFE8362B),
-            //     )
-            //   ],
-            // ),
-          ]),
+          child: Column(children: const [PopularAreaWidget()]),
         ),
       ),
     ));
