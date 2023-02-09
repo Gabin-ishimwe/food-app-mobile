@@ -34,7 +34,7 @@ class PopularAreaWidget extends StatelessWidget {
                 initialPage: 0,
                 disableCenter: true,
                 enableInfiniteScroll: false,
-                // autoPlay: true,
+                autoPlay: true,
                 viewportFraction: 0.8,
                 padEnds: false),
             items: PopularAreaModel.areas
