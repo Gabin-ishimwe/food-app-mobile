@@ -71,6 +71,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                     alignment: Alignment.topRight,
                                     child: Container(
                                       margin: EdgeInsets.zero,
+                                      padding: EdgeInsets.zero,
                                       child: TextButton(
                                         onPressed: (() {
                                           // skip onboarding
