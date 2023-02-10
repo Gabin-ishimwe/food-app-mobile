@@ -21,48 +21,11 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
   @override
   Widget build(BuildContext context) {
+    var displayHeight = MediaQuery.of(context).size.height;
     return SafeArea(
         child: Scaffold(
       appBar: customAppBar(),
       bottomNavigationBar: BottomNavWidget(),
-      // bottomNavigationBar: Container(
-      //   margin: EdgeInsets.all(20),
-      //   decoration: BoxDecoration(
-      //       color: Colors.white,
-      //       borderRadius: BorderRadius.circular(30),
-      //       boxShadow: [
-      //         BoxShadow(
-      //           color: Colors.black.withOpacity(.1),
-      //           blurRadius: 30,
-      //           offset: Offset(0, 10),
-      //         )
-      //       ]),
-      //   child: GNav(
-      //       // backgroundColor: Colors.black,
-      //       color: Color(0xFFF55349),
-      //       tabBackgroundColor: Color.fromARGB(255, 255, 234, 233),
-      //       activeColor: Color(0xFFF55349),
-      //       padding: EdgeInsets.all(15),
-      //       gap: 5,
-      //       tabs: [
-      //         GButton(
-      //           icon: Icons.home,
-      //           text: "Home",
-      //         ),
-      //         GButton(
-      //           icon: Icons.search,
-      //           text: "Search",
-      //         ),
-      //         GButton(
-      //           icon: Icons.shopping_basket,
-      //           text: "Orders",
-      //         ),
-      //         GButton(
-      //           icon: Icons.person,
-      //           text: "Profile",
-      //         ),
-      //       ]),
-      // ),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.all(20),
@@ -73,14 +36,6 @@ class _HomeScreenState extends State<HomeScreen> {
           ]),
         ),
       ),
-      // body: ListView(
-      //   padding: EdgeInsets.all(20),
-      //   children: [
-      //     PopularAreaWidget(),
-      //     Padding(padding: EdgeInsets.only(top: 10)),
-      //     PopularDishesWidget()
-      //   ],
-      // ),
     ));
   }
 
