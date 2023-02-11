@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:food_book_mobile/models/popular_area_model.dart';
+import 'package:food_book_mobile/screens/restaurant_screen.dart';
 
 class PopularAreaWidget extends StatelessWidget {
   const PopularAreaWidget({super.key});
@@ -18,7 +19,12 @@ class PopularAreaWidget extends StatelessWidget {
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => RestaurantScreen()));
+              },
               child: Text(
                 "See more",
                 style: TextStyle(color: Color(0xFFF55349), fontSize: 14),
