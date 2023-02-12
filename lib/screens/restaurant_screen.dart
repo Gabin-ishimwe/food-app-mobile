@@ -11,6 +11,8 @@ class RestaurantScreen extends StatefulWidget {
 class _RestaurantScreenState extends State<RestaurantScreen> {
   @override
   Widget build(BuildContext context) {
+    double itemWidth = MediaQuery.of(context).size.width;
+    double itemheight = MediaQuery.of(context).size.width;
     return SafeArea(
         child: Scaffold(
       body: SingleChildScrollView(
@@ -60,7 +62,8 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 10,
-                      mainAxisSpacing: 15),
+                      mainAxisSpacing: 15,
+                      childAspectRatio: (itemWidth / 2) / 250),
                   itemBuilder: ((context, index) {
                     return Container(
                       width: MediaQuery.of(context).size.width,
@@ -71,8 +74,8 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                           children: [
                             Expanded(
                               child: Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: 150,
+                                // width: MediaQuery.of(context).size.width,
+                                // height: 150,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
                                     image: DecorationImage(
