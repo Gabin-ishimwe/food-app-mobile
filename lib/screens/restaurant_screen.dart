@@ -22,19 +22,29 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                IconButton(
+                ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: Icon(
-                    Icons.arrow_back_ios,
-                    size: 20,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 4),
+                    child: Icon(
+                      Icons.arrow_back_ios,
+                      size: 15,
+                      color: Color(0xFFF55349),
+                    ),
                   ),
-                  splashColor: Colors.transparent,
-                  style: IconButton.styleFrom(
-                    splashFactory: NoSplash.splashFactory,
-                    padding: EdgeInsets.zero,
-                  ),
+                  // splashColor: Colors.transparent,
+                  style: ElevatedButton.styleFrom(
+                      splashFactory: NoSplash.splashFactory,
+                      padding: EdgeInsets.all(10),
+                      backgroundColor: Color(0xFFF55349).withOpacity(.2),
+                      elevation: 0,
+                      shape: CircleBorder(),
+                      // shape: RoundedRectangleBorder(
+                      //   borderRadius: BorderRadius.all(Radius.circular(100)),
+                      // ),
+                      minimumSize: Size(0, 0)),
                 ),
                 Text(
                   "Popular Restaurants",
@@ -43,13 +53,22 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                     fontSize: 16,
                   ),
                 ),
-                IconButton(
-                    onPressed: () {},
-                    splashColor: Colors.transparent,
-                    icon: Icon(
-                      Icons.search,
-                      size: 20,
-                    )),
+                ElevatedButton(
+                  onPressed: () {},
+                  // splashColor: Colors.transparent,
+                  child: Icon(
+                    Icons.search,
+                    size: 15,
+                    color: Color(0xFFF55349),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                      splashFactory: NoSplash.splashFactory,
+                      padding: EdgeInsets.all(10),
+                      backgroundColor: Color(0xFFF55349).withOpacity(.2),
+                      elevation: 0,
+                      shape: CircleBorder(),
+                      minimumSize: Size(0, 0)),
+                ),
               ],
             ),
             Padding(padding: EdgeInsets.only(top: 10)),
@@ -63,7 +82,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                       crossAxisCount: 2,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 15,
-                      childAspectRatio: (itemWidth / 2) / 250),
+                      childAspectRatio: (itemWidth / 2) / 220),
                   itemBuilder: ((context, index) {
                     return Container(
                       width: MediaQuery.of(context).size.width,
@@ -92,7 +111,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                             ),
                             Padding(padding: EdgeInsets.only(top: 5)),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Row(
                                   children: [
@@ -101,12 +120,12 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                                       color: Color.fromARGB(255, 255, 203, 59),
                                       size: 18,
                                     ),
-                                    // Padding(padding: EdgeInsets.only(right: 3)),
+                                    // Padding(padding: EdgeInsets.only(right: 2)),
                                     Text(
                                       "${PopularAreaModel.moreAreas[index].rating.toString()}",
                                       style: TextStyle(fontSize: 12),
                                     ),
-                                    // Padding(padding: EdgeInsets.only(right: 3)),
+                                    // Padding(padding: EdgeInsets.only(right: 2)),
                                     Text(
                                       "(${PopularAreaModel.moreAreas[index].votes})",
                                       style: TextStyle(
