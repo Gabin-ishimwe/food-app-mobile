@@ -34,6 +34,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     double screenHeigth = MediaQuery.of(context).size.height;
     return SafeArea(
         child: Scaffold(
+      extendBodyBehindAppBar: true,
       body: Container(
         width: screenWidth,
         height: screenHeigth,
