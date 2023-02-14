@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:food_book_mobile/models/popular_area_model.dart';
 import 'package:food_book_mobile/screens/restaurant_screen.dart';
+import 'package:food_book_mobile/screens/view_restaurant_screen.dart';
 
 class PopularAreaWidget extends StatelessWidget {
   const PopularAreaWidget({super.key});
@@ -50,100 +51,106 @@ class PopularAreaWidget extends StatelessWidget {
     );
   }
 
-  Container restaurantCard(
+  Widget restaurantCard(
       BuildContext context, PopularAreaModel popularAreaModel) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      margin: EdgeInsets.only(right: 10),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(
-          popularAreaModel.name,
-          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
-        ),
-        Padding(padding: EdgeInsets.only(top: 5)),
-        Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                Icon(
-                  Icons.star,
-                  color: Color.fromARGB(255, 255, 203, 59),
-                  size: 18,
-                ),
-                Padding(padding: EdgeInsets.only(right: 3)),
-                Text(
-                  popularAreaModel.rating.toString(),
-                  style: TextStyle(fontSize: 12),
-                ),
-                Padding(padding: EdgeInsets.only(right: 3)),
-                Text(
-                  "(${popularAreaModel.votes})",
-                  style: TextStyle(color: Colors.grey, fontSize: 12),
-                )
-              ],
-            ),
-            Padding(padding: EdgeInsets.only(right: 6)),
-            Container(
-              height: 4,
-              width: 4,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.grey,
+    return InkWell(
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => ViewRestaurantScreen()));
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        margin: EdgeInsets.only(right: 10),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(
+            popularAreaModel.name,
+            style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+          ),
+          Padding(padding: EdgeInsets.only(top: 5)),
+          Row(
+            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Icon(
+                    Icons.star,
+                    color: Color.fromARGB(255, 255, 203, 59),
+                    size: 18,
+                  ),
+                  Padding(padding: EdgeInsets.only(right: 3)),
+                  Text(
+                    popularAreaModel.rating.toString(),
+                    style: TextStyle(fontSize: 12),
+                  ),
+                  Padding(padding: EdgeInsets.only(right: 3)),
+                  Text(
+                    "(${popularAreaModel.votes})",
+                    style: TextStyle(color: Colors.grey, fontSize: 12),
+                  )
+                ],
               ),
-            ),
-            Padding(padding: EdgeInsets.only(right: 6)),
-            Row(
-              children: [
-                Icon(
-                  Icons.location_on,
+              Padding(padding: EdgeInsets.only(right: 6)),
+              Container(
+                height: 4,
+                width: 4,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
                   color: Colors.grey,
-                  size: 18,
                 ),
-                Padding(padding: EdgeInsets.only(right: 3)),
-                Text(
-                  "${popularAreaModel.distance}km",
-                  style: TextStyle(color: Colors.grey, fontSize: 12),
-                )
-              ],
-            ),
-            Padding(padding: EdgeInsets.only(right: 6)),
-            Container(
-              height: 4,
-              width: 4,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: Colors.grey,
               ),
-            ),
-            Padding(padding: EdgeInsets.only(right: 6)),
-            Row(
-              children: [
-                Icon(
-                  Icons.access_time_filled,
+              Padding(padding: EdgeInsets.only(right: 6)),
+              Row(
+                children: [
+                  Icon(
+                    Icons.location_on,
+                    color: Colors.grey,
+                    size: 18,
+                  ),
+                  Padding(padding: EdgeInsets.only(right: 3)),
+                  Text(
+                    "${popularAreaModel.distance}km",
+                    style: TextStyle(color: Colors.grey, fontSize: 12),
+                  )
+                ],
+              ),
+              Padding(padding: EdgeInsets.only(right: 6)),
+              Container(
+                height: 4,
+                width: 4,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
                   color: Colors.grey,
-                  size: 18,
                 ),
-                Padding(padding: EdgeInsets.only(right: 3)),
-                Text(
-                  "${popularAreaModel.time} mins",
-                  style: TextStyle(color: Colors.grey, fontSize: 12),
-                )
-              ],
-            )
-          ],
-        ),
-        Padding(padding: EdgeInsets.only(top: 10)),
-        Container(
-          width: MediaQuery.of(context).size.width,
-          height: 150,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              image: DecorationImage(
-                  image: AssetImage(popularAreaModel.image),
-                  fit: BoxFit.cover)),
-        )
-      ]),
+              ),
+              Padding(padding: EdgeInsets.only(right: 6)),
+              Row(
+                children: [
+                  Icon(
+                    Icons.access_time_filled,
+                    color: Colors.grey,
+                    size: 18,
+                  ),
+                  Padding(padding: EdgeInsets.only(right: 3)),
+                  Text(
+                    "${popularAreaModel.time} mins",
+                    style: TextStyle(color: Colors.grey, fontSize: 12),
+                  )
+                ],
+              )
+            ],
+          ),
+          Padding(padding: EdgeInsets.only(top: 10)),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: 150,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                image: DecorationImage(
+                    image: AssetImage(popularAreaModel.image),
+                    fit: BoxFit.cover)),
+          )
+        ]),
+      ),
     );
   }
 }
