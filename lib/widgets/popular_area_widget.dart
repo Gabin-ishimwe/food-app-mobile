@@ -55,8 +55,17 @@ class PopularAreaWidget extends StatelessWidget {
       BuildContext context, PopularAreaModel popularAreaModel) {
     return InkWell(
       onTap: () {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => ViewRestaurantScreen()));
+        print(popularAreaModel.name);
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ViewRestaurantScreen(
+                      name: popularAreaModel.name,
+                      description: popularAreaModel.description,
+                      image: popularAreaModel.image,
+                      dishes: popularAreaModel.dishes,
+                      restaurantCash: popularAreaModel.restaurantCash,
+                    )));
       },
       child: Container(
         width: MediaQuery.of(context).size.width,

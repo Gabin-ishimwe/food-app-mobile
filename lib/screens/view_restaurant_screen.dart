@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 
-class ViewRestaurantScreen extends StatefulWidget {
-  const ViewRestaurantScreen({super.key});
+class ViewRestaurantScreen extends StatelessWidget {
+  String name;
+  int dishes;
+  String description;
+  double restaurantCash;
+  var image;
 
-  @override
-  State<ViewRestaurantScreen> createState() => _ViewRestaurantScreenState();
-}
+  ViewRestaurantScreen(
+      {super.key,
+      required this.name,
+      required this.dishes,
+      required this.description,
+      required this.image,
+      required this.restaurantCash});
 
-class _ViewRestaurantScreenState extends State<ViewRestaurantScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -24,6 +31,9 @@ class _ViewRestaurantScreenState extends State<ViewRestaurantScreen> {
               child: Container(
                 padding: EdgeInsets.all(20),
                 width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        fit: BoxFit.cover, image: AssetImage(image))),
                 child: Stack(
                   clipBehavior: Clip.none,
                   children: [
@@ -36,7 +46,9 @@ class _ViewRestaurantScreenState extends State<ViewRestaurantScreen> {
                                 minimumSize: Size(0, 0),
                                 backgroundColor: Colors.white.withOpacity(0.2),
                                 shape: CircleBorder()),
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
                             child: Padding(
                               padding: EdgeInsets.only(left: 7),
                               child: Icon(
@@ -79,93 +91,95 @@ class _ViewRestaurantScreenState extends State<ViewRestaurantScreen> {
                       ],
                     ),
                     Positioned(
+                        left: 0,
+                        right: 0,
+                        bottom: -20 -
+                            ((MediaQuery.of(context).size.height * 0.15) / 2),
                         child: Container(
-                      height: MediaQuery.of(context).size.height * 0.15,
-                      padding: EdgeInsets.all(15),
-                      child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Bwok - Kigali",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16),
-                            ),
-                            Text(
-                              "Burger - Chicken - Cake",
-                              style:
-                                  TextStyle(color: Colors.grey, fontSize: 12),
-                            ),
-                            Row(
-                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          height: MediaQuery.of(context).size.height * 0.15,
+                          padding: EdgeInsets.all(15),
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                    blurRadius: 5,
+                                    spreadRadius: 1,
+                                    color: Colors.black.withOpacity(0.2))
+                              ]),
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                Text(
+                                  name,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16),
+                                ),
+                                Text(
+                                  description,
+                                  style: TextStyle(
+                                      color: Colors.grey, fontSize: 12),
+                                ),
                                 Row(
+                                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Icon(
-                                      Icons.star,
-                                      color: Colors.grey,
-                                      size: 18,
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.dining_rounded,
+                                          color: Colors.grey,
+                                          size: 18,
+                                        ),
+                                        Padding(
+                                            padding: EdgeInsets.only(right: 3)),
+                                        Text(
+                                          "${dishes} Dishes",
+                                          style: TextStyle(fontSize: 12),
+                                        ),
+                                      ],
                                     ),
-                                    Padding(padding: EdgeInsets.only(right: 3)),
-                                    Text(
-                                      "35 Dishes",
-                                      style: TextStyle(fontSize: 12),
+                                    Padding(padding: EdgeInsets.only(right: 6)),
+                                    Container(
+                                      height: 4,
+                                      width: 4,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Colors.grey,
+                                      ),
                                     ),
-                                    // Padding(padding: EdgeInsets.only(right: 3)),
-                                    // Text(
-                                    //   "(${PopularDishesModel.dishes[index].votes})",
-                                    //   style:
-                                    //       TextStyle(color: Colors.grey, fontSize: 12),
-                                    // )
+                                    Padding(padding: EdgeInsets.only(right: 6)),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.attach_money_rounded,
+                                          color: Colors.grey,
+                                          size: 18,
+                                        ),
+                                        Padding(
+                                            padding: EdgeInsets.only(right: 1)),
+                                        Text(
+                                          "\$ ${restaurantCash} - \$ ${restaurantCash + 50}",
+                                          style: TextStyle(fontSize: 12),
+                                        )
+                                      ],
+                                    ),
                                   ],
                                 ),
-                                Padding(padding: EdgeInsets.only(right: 6)),
-                                Container(
-                                  height: 4,
-                                  width: 4,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: Colors.grey,
-                                  ),
-                                ),
-                                Padding(padding: EdgeInsets.only(right: 6)),
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.location_on,
-                                      color: Colors.grey,
-                                      size: 18,
-                                    ),
-                                    Padding(padding: EdgeInsets.only(right: 3)),
-                                    Text(
-                                      "\$ 50.00 - \$ 80.00",
-                                      style: TextStyle(fontSize: 12),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ]),
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10)),
-                    ))
+                              ]),
+                        ))
                   ],
                 ),
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image:
-                            AssetImage('images/home_screen/restaurant_1.png'))),
               ),
             ),
             Expanded(
+              flex: 7,
               child: Container(
                   child: Center(
                 child: Text("other restaurants"),
               )),
-              flex: 7,
             )
           ],
         ),
