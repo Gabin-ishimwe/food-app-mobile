@@ -82,7 +82,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                       crossAxisCount: 2,
                       crossAxisSpacing: 10,
                       mainAxisSpacing: 15,
-                      childAspectRatio: (itemWidth / 2) / 220),
+                      childAspectRatio: (itemWidth / 2) / 240),
                   itemBuilder: ((context, index) {
                     return Container(
                       width: MediaQuery.of(context).size.width,
