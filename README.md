@@ -4,6 +4,12 @@ Food Book(Foode) is a mobile app that would allow vendors at the cafeteria to ad
 
 Aside from viewing the menu, students and staff can order and pay for meals before to ensure that they won't miss meals. Every vendor would have an account on the app, and they would be able to create, update and delete a meal from their servings. They would also be able to specify a menu item that is out of stock to notify the students and staff before placing their orders. This would create a more efficient way of ordering and getting food at the school’s cafeteria and ensuring customers’(students and staff) satisfaction.
 
+## Software Requirement Specification (SRS)
+
+In this SRS document, we are going to describe all the specifications of our FoodBook Application, every requirement needed to build this application, how it will work, all stakeholders who will be involved in developing this application, features that will be implemented and how it will be used by the end users.
+
+[SRS Document](https://docs.google.com/document/d/1pO0UzydHYtbt8-Ib7R6cLrysbbjnnAoeGaqCpVIBEMA/edit?usp=sharing)
+
 
 ## Features
 
