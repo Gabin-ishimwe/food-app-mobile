@@ -6,6 +6,7 @@ class PopularDishesModel {
   int votes;
   var image;
   var price;
+  String description;
 
   PopularDishesModel(
       {required this.name,
@@ -14,7 +15,8 @@ class PopularDishesModel {
       required this.dishItems,
       required this.votes,
       required this.image,
-      required this.price});
+      required this.price,
+      required this.description});
 
   static List<PopularDishesModel> dishes = [
     PopularDishesModel(
@@ -24,7 +26,8 @@ class PopularDishesModel {
         votes: 242,
         dishItems: ["Burger", "Chicken", "Cake"],
         image: "images/home_screen/desert.png",
-        price: 20.7),
+        price: 20.7,
+        description: 'Best hot grilled beef and chips to increase flavors'),
     PopularDishesModel(
         name: "BBQ Rib Dinner",
         rating: 4.2,
@@ -32,7 +35,8 @@ class PopularDishesModel {
         distance: 2.4,
         dishItems: ["Burger", "Chicken", "Cake"],
         image: "images/home_screen/pancakes.png",
-        price: 10.5),
+        price: 10.5,
+        description: 'Delicious fried ribs and tomato sauce'),
     PopularDishesModel(
         name: "Fried Chicken Dinne",
         votes: 242,
@@ -40,7 +44,8 @@ class PopularDishesModel {
         distance: 2.4,
         dishItems: ["Burger", "Chicken", "Cake"],
         image: "images/home_screen/pancakes.png",
-        price: 50.5),
+        price: 50.5,
+        description: 'Best fried chicken with chips and mayonnaise'),
     PopularDishesModel(
         name: "Chicken Pizza",
         rating: 4.2,
@@ -48,7 +53,8 @@ class PopularDishesModel {
         distance: 2.4,
         dishItems: ["Burger", "Chicken", "Cake"],
         image: "images/home_screen/pizza.png",
-        price: 10.5),
+        price: 10.5,
+        description: 'Best hot grilled beef and chips to increase flavors'),
     PopularDishesModel(
         name: "Big Burger King",
         votes: 242,
@@ -56,7 +62,8 @@ class PopularDishesModel {
         distance: 2.4,
         dishItems: ["Burger", "Chicken", "Cake"],
         image: "images/home_screen/ramen.png",
-        price: 5.5),
+        price: 5.5,
+        description: 'Best hot grilled beef and chips to increase flavors'),
     PopularDishesModel(
         name: "Pepperoni Pizza",
         votes: 242,
@@ -64,7 +71,8 @@ class PopularDishesModel {
         distance: 2.4,
         dishItems: ["Burger", "Chicken", "Cake"],
         image: "images/home_screen/pizza.png",
-        price: 8.5),
+        price: 8.5,
+        description: 'Best hot grilled beef and chips to increase flavors'),
   ];
   static List<PopularDishesModel> moreDishes = [
     PopularDishesModel(
@@ -74,7 +82,8 @@ class PopularDishesModel {
         votes: 242,
         dishItems: ["Burger", "Chicken", "Cake"],
         image: "images/home_screen/desert.png",
-        price: 20.5),
+        price: 20.7,
+        description: 'Best hot grilled beef and chips to increase flavors'),
     PopularDishesModel(
         name: "BBQ Rib Dinner",
         rating: 4.2,
@@ -82,7 +91,8 @@ class PopularDishesModel {
         distance: 2.4,
         dishItems: ["Burger", "Chicken", "Cake"],
         image: "images/home_screen/pancakes.png",
-        price: 10.7),
+        price: 10.5,
+        description: 'Delicious fried ribs and tomato sauce'),
     PopularDishesModel(
         name: "Fried Chicken Dinne",
         votes: 242,
@@ -90,7 +100,8 @@ class PopularDishesModel {
         distance: 2.4,
         dishItems: ["Burger", "Chicken", "Cake"],
         image: "images/home_screen/pancakes.png",
-        price: 50.5),
+        price: 50.5,
+        description: 'Best fried chicken with chips and mayonnaise'),
     PopularDishesModel(
         name: "Chicken Pizza",
         rating: 4.2,
@@ -98,7 +109,8 @@ class PopularDishesModel {
         distance: 2.4,
         dishItems: ["Burger", "Chicken", "Cake"],
         image: "images/home_screen/pizza.png",
-        price: 10.5),
+        price: 10.5,
+        description: 'Best hot grilled beef and chips to increase flavors'),
     PopularDishesModel(
         name: "Big Burger King",
         votes: 242,
@@ -106,7 +118,8 @@ class PopularDishesModel {
         distance: 2.4,
         dishItems: ["Burger", "Chicken", "Cake"],
         image: "images/home_screen/ramen.png",
-        price: 5.5),
+        price: 5.5,
+        description: 'Best hot grilled beef and chips to increase flavors'),
     PopularDishesModel(
         name: "Pepperoni Pizza",
         votes: 242,
@@ -114,7 +127,8 @@ class PopularDishesModel {
         distance: 2.4,
         dishItems: ["Burger", "Chicken", "Cake"],
         image: "images/home_screen/pizza.png",
-        price: 8.5),
+        price: 8.5,
+        description: 'Best hot grilled beef and chips to increase flavors'),
     PopularDishesModel(
         name: "Shaking Beef Ti-Trip",
         rating: 4.2,
@@ -122,7 +136,8 @@ class PopularDishesModel {
         votes: 242,
         dishItems: ["Burger", "Chicken", "Cake"],
         image: "images/home_screen/desert.png",
-        price: 20.7),
+        price: 20.7,
+        description: 'Best hot grilled beef and chips to increase flavors'),
     PopularDishesModel(
         name: "BBQ Rib Dinner",
         rating: 4.2,
@@ -130,7 +145,8 @@ class PopularDishesModel {
         distance: 2.4,
         dishItems: ["Burger", "Chicken", "Cake"],
         image: "images/home_screen/pancakes.png",
-        price: 10.5),
+        price: 10.5,
+        description: 'Delicious fried ribs and tomato sauce'),
     PopularDishesModel(
         name: "Fried Chicken Dinne",
         votes: 242,
@@ -138,7 +154,8 @@ class PopularDishesModel {
         distance: 2.4,
         dishItems: ["Burger", "Chicken", "Cake"],
         image: "images/home_screen/pancakes.png",
-        price: 50.5),
+        price: 50.5,
+        description: 'Best fried chicken with chips and mayonnaise'),
     PopularDishesModel(
         name: "Chicken Pizza",
         rating: 4.2,
@@ -146,7 +163,8 @@ class PopularDishesModel {
         distance: 2.4,
         dishItems: ["Burger", "Chicken", "Cake"],
         image: "images/home_screen/pizza.png",
-        price: 10.5),
+        price: 10.5,
+        description: 'Best hot grilled beef and chips to increase flavors'),
     PopularDishesModel(
         name: "Big Burger King",
         votes: 242,
@@ -154,7 +172,8 @@ class PopularDishesModel {
         distance: 2.4,
         dishItems: ["Burger", "Chicken", "Cake"],
         image: "images/home_screen/ramen.png",
-        price: 5.5),
+        price: 5.5,
+        description: 'Best hot grilled beef and chips to increase flavors'),
     PopularDishesModel(
         name: "Pepperoni Pizza",
         votes: 242,
@@ -162,22 +181,7 @@ class PopularDishesModel {
         distance: 2.4,
         dishItems: ["Burger", "Chicken", "Cake"],
         image: "images/home_screen/pizza.png",
-        price: 8.5),
-    PopularDishesModel(
-        name: "Big Burger King",
-        votes: 242,
-        rating: 4.2,
-        distance: 2.4,
-        dishItems: ["Burger", "Chicken", "Cake"],
-        image: "images/home_screen/ramen.png",
-        price: 5.5),
-    PopularDishesModel(
-        name: "Pepperoni Pizza",
-        votes: 242,
-        rating: 4.2,
-        distance: 2.4,
-        dishItems: ["Burger", "Chicken", "Cake"],
-        image: "images/home_screen/pizza.png",
-        price: 8.5),
+        price: 8.5,
+        description: 'Best hot grilled beef and chips to increase flavors'),
   ];
 }
