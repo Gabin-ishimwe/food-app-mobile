@@ -67,72 +67,102 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                   color:
                                       const Color.fromARGB(255, 255, 234, 233),
                                 ),
-                                child: Column(children: [
-                                  Align(
-                                    alignment: Alignment.topRight,
-                                    child: Container(
-                                      margin: EdgeInsets.zero,
-                                      padding: EdgeInsets.zero,
-                                      child: TextButton(
-                                        onPressed: (() {
-                                          // skip onboarding
-                                          // navigate to other screen
-                                          Navigator.push(context,
-                                              MaterialPageRoute(
-                                                  builder: ((context) {
-                                            return const WelcomeScreen();
-                                          })));
-                                        }),
-                                        style: TextButton.styleFrom(
-                                            padding: const EdgeInsets.all(0),
-                                            splashFactory:
-                                                NoSplash.splashFactory),
-                                        child: Text(
-                                          "Skip",
-                                          style: GoogleFonts.poppins(
-                                              textStyle: const TextStyle(
-                                            color: Color.fromARGB(
-                                                255, 235, 53, 34),
-                                            fontSize: 14,
-                                          )),
+                                child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      // Align(
+                                      //   alignment: Alignment.topRight,
+                                      //   child: Container(
+                                      //     margin: EdgeInsets.zero,
+                                      //     padding: EdgeInsets.zero,
+                                      //     child: TextButton(
+                                      //       onPressed: (() {
+                                      //         // skip onboarding
+                                      //         // navigate to other screen
+                                      //         Navigator.push(context,
+                                      //             MaterialPageRoute(
+                                      //                 builder: ((context) {
+                                      //           return const WelcomeScreen();
+                                      //         })));
+                                      //       }),
+                                      //       style: TextButton.styleFrom(
+                                      //           padding: const EdgeInsets.all(0),
+                                      //           splashFactory:
+                                      //               NoSplash.splashFactory),
+                                      //       child: Text(
+                                      //         "Skip",
+                                      //         style: GoogleFonts.poppins(
+                                      //             textStyle: const TextStyle(
+                                      //           color: Color.fromARGB(
+                                      //               255, 235, 53, 34),
+                                      //           fontSize: 14,
+                                      //         )),
+                                      //       ),
+                                      //     ),
+                                      //   ),
+                                      // ),
+                                      // Align(
+                                      //     alignment: Alignment.topRight,
+                                      //     child: Padding(
+                                      //       padding:
+                                      //           EdgeInsets.only(right: 10, top: 10),
+                                      //       child: InkWell(
+                                      //         onTap: () {
+                                      //           // skip onboarding
+                                      //           // navigate to other screen
+                                      //           Navigator.push(context,
+                                      //               MaterialPageRoute(
+                                      //                   builder: ((context) {
+                                      //             return const WelcomeScreen();
+                                      //           })));
+                                      //         },
+                                      //         child: Text(
+                                      //           "Skip",
+                                      //           style: GoogleFonts.poppins(
+                                      //               textStyle: const TextStyle(
+                                      //             color: Color.fromARGB(
+                                      //                 255, 235, 53, 34),
+                                      //             fontSize: 15,
+                                      //           )),
+                                      //         ),
+                                      //       ),
+                                      //     )),
+                                      Align(
+                                        alignment: Alignment.center,
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 10),
+                                          child: SvgPicture.asset(
+                                            onboardContents[index].image,
+                                            semanticsLabel: "logo",
+                                            height: 250,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 10),
-                                      child: SvgPicture.asset(
-                                        onboardContents[index].image,
-                                        semanticsLabel: "logo",
-                                        height: 250,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    height: 30,
-                                  ),
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: List.generate(
-                                        onboardContents.length,
-                                        (index) => Container(
-                                            height: 10,
-                                            width:
-                                                currentIndex == index ? 25 : 10,
-                                            margin:
-                                                const EdgeInsets.only(right: 5),
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              color: const Color.fromARGB(
-                                                  255, 235, 53, 34),
-                                            )),
-                                      ))
-                                ]),
+                                      // const SizedBox(
+                                      //   height: 30,
+                                      // ),
+                                      Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: List.generate(
+                                            onboardContents.length,
+                                            (index) => Container(
+                                                height: 10,
+                                                width: currentIndex == index
+                                                    ? 25
+                                                    : 10,
+                                                margin: const EdgeInsets.only(
+                                                    right: 5),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                  color: const Color.fromARGB(
+                                                      255, 235, 53, 34),
+                                                )),
+                                          ))
+                                    ]),
                               ),
                             ),
                             Expanded(
