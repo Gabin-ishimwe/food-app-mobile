@@ -139,7 +139,17 @@ class _PopularDishesWidgetState extends State<PopularDishesWidget> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => DishDetailsScreen()));
+                          builder: (context) => DishDetailsScreen(
+                                name: PopularDishesModel.dishes[index].name,
+                                description: PopularDishesModel
+                                    .dishes[index].description,
+                                image: PopularDishesModel.dishes[index].image,
+                                choiceSize:
+                                    PopularDishesModel.dishes[index].choiceSize,
+                                ingredients: PopularDishesModel
+                                    .dishes[index].ingredients,
+                                price: PopularDishesModel.dishes[index].price,
+                              )));
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width,

@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:food_book_mobile/widgets/custom_check_button_widget.dart';
+import 'package:food_book_mobile/widgets/custom_radio_button.dart';
 
 class DishDetailsScreen extends StatefulWidget {
-  const DishDetailsScreen({super.key});
+  String name;
+  var image;
+  var price;
+  String description;
+  var choiceSize;
+  var ingredients;
+  DishDetailsScreen(
+      {super.key,
+      required this.name,
+      required this.image,
+      required this.price,
+      required this.description,
+      required this.choiceSize,
+      required this.ingredients});
 
   @override
   State<DishDetailsScreen> createState() => _DishDetailsScreenState();
@@ -9,6 +24,10 @@ class DishDetailsScreen extends StatefulWidget {
 
 class _DishDetailsScreenState extends State<DishDetailsScreen> {
   bool addMessage = false;
+  int checkSize = 0;
+  var dishIngredients = [];
+
+  void _addIngredients(var value) {}
 
   void _addMessageFn() {
     setState(() {
@@ -31,8 +50,7 @@ class _DishDetailsScreenState extends State<DishDetailsScreen> {
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('images/home_screen/desert.png'))),
+                    fit: BoxFit.cover, image: AssetImage(widget.image))),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,45 +81,47 @@ class _DishDetailsScreenState extends State<DishDetailsScreen> {
             child: Column(children: [
               Container(
                 width: MediaQuery.of(context).size.width,
-                child: Column(children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Big Burger King",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600, fontSize: 16),
-                        ),
-                        Row(
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Icon(
-                              Icons.attach_money,
-                              size: 18,
-                            ),
                             Text(
-                              "12.52",
-                              style: TextStyle(fontSize: 14),
+                              "${widget.name}",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w600, fontSize: 16),
+                            ),
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.attach_money,
+                                  size: 18,
+                                ),
+                                Text(
+                                  "${widget.price}",
+                                  style: TextStyle(fontSize: 14),
+                                )
+                              ],
                             )
                           ],
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.only(top: 10)),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Text(
-                      'Best hot grilled beef and chips to increase flavor, comes with grilled tomatoes sauce.',
-                      style: TextStyle(color: Colors.grey, fontSize: 13),
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.only(top: 5)),
-                  Divider(
-                    thickness: 1,
-                  )
-                ]),
+                        ),
+                      ),
+                      Padding(padding: EdgeInsets.only(top: 10)),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Text(
+                          "${widget.description}",
+                          style: TextStyle(color: Colors.grey, fontSize: 13),
+                        ),
+                      ),
+                      Padding(padding: EdgeInsets.only(top: 5)),
+                      Divider(
+                        thickness: 1,
+                      )
+                    ]),
               ),
               SizedBox(
                 height: 10,
@@ -128,59 +148,41 @@ class _DishDetailsScreenState extends State<DishDetailsScreen> {
                         child: ListView.separated(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
-                            itemBuilder: ((context, index) => Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.done_rounded,
-                                            color: Color(
-                                              0xFFF55349,
+                            itemBuilder: ((context, index) => InkWell(
+                                  splashColor: Colors.transparent,
+                                  splashFactory: NoSplash.splashFactory,
+                                  onTap: () {
+                                    setState(() {
+                                      checkSize = index;
+                                    });
+                                  },
+                                  child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        CustomRadioButton(
+                                          index: index,
+                                          label: widget.choiceSize[index],
+                                          checkSize: checkSize,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.attach_money,
+                                              size: 18,
                                             ),
-                                            size: 20,
-                                          ),
-                                          // Container(
-                                          //   width: 14,
-                                          //   height: 14,
-                                          //   decoration: BoxDecoration(
-                                          //       color: Colors.grey.shade100,
-                                          //       shape: BoxShape.circle,
-                                          //       // borderRadius: BorderRadius.all(
-                                          //       //     Radius.circular(50)),
-                                          //       border: Border.all(
-                                          //           color:
-                                          //               Colors.grey.shade400)),
-                                          // ),
-                                          Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 10)),
-                                          Text(
-                                            'Size S',
-                                            style: TextStyle(
-                                                color: Colors.grey,
-                                                fontSize: 13),
-                                          )
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.attach_money,
-                                            size: 18,
-                                          ),
-                                          Text(
-                                            "12.52",
-                                            style: TextStyle(fontSize: 14),
-                                          )
-                                        ],
-                                      )
-                                    ])),
+                                            Text(
+                                              "${index + 10.30}",
+                                              style: TextStyle(fontSize: 14),
+                                            )
+                                          ],
+                                        )
+                                      ]),
+                                )),
                             separatorBuilder: (context, index) => SizedBox(
                                   height: 15,
                                 ),
-                            itemCount: 3),
+                            itemCount: widget.choiceSize.length),
                       ),
                     ]),
               ),
@@ -213,37 +215,41 @@ class _DishDetailsScreenState extends State<DishDetailsScreen> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.done_rounded,
-                                            color: Color(
-                                              0xFFF55349,
-                                            ),
-                                            size: 20,
-                                          ),
-                                          // Container(
-                                          //   width: 14,
-                                          //   height: 14,
-                                          //   decoration: BoxDecoration(
-                                          //       color: Colors.grey.shade100,
-                                          //       borderRadius: BorderRadius.all(
-                                          //           Radius.circular(5)),
-                                          //       border: Border.all(
-                                          //           color:
-                                          //               Colors.grey.shade400)),
-                                          // ),
-                                          Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 10)),
-                                          Text(
-                                            'Chicken soup',
-                                            style: TextStyle(
-                                                color: Colors.grey,
-                                                fontSize: 13),
-                                          )
-                                        ],
-                                      ),
+                                      // Row(
+                                      //   children: [
+                                      //     Icon(
+                                      //       Icons.done_rounded,
+                                      //       color: Color(
+                                      //         0xFFF55349,
+                                      //       ),
+                                      //       size: 20,
+                                      //     ),
+                                      //     // Container(
+                                      //     //   width: 14,
+                                      //     //   height: 14,
+                                      //     //   decoration: BoxDecoration(
+                                      //     //       color: Colors.grey.shade100,
+                                      //     //       borderRadius: BorderRadius.all(
+                                      //     //           Radius.circular(5)),
+                                      //     //       border: Border.all(
+                                      //     //           color:
+                                      //     //               Colors.grey.shade400)),
+                                      //     // ),
+                                      //     Padding(
+                                      //         padding:
+                                      //             EdgeInsets.only(right: 10)),
+                                      //     Text(
+                                      //       '${widget.ingredients[index]}',
+                                      //       style: TextStyle(
+                                      //           color: Colors.grey,
+                                      //           fontSize: 13),
+                                      //     )
+                                      //   ],
+                                      // ),
+                                      CustomCheckBoxButton(
+                                          label: widget.ingredients[index],
+                                          value: null,
+                                          isSelected: true),
                                       Row(
                                         children: [
                                           Icon(
@@ -251,7 +257,7 @@ class _DishDetailsScreenState extends State<DishDetailsScreen> {
                                             size: 18,
                                           ),
                                           Text(
-                                            "12.52",
+                                            "${index + 12.52}",
                                             style: TextStyle(fontSize: 14),
                                           )
                                         ],
@@ -260,7 +266,7 @@ class _DishDetailsScreenState extends State<DishDetailsScreen> {
                             separatorBuilder: (context, index) => SizedBox(
                                   height: 15,
                                 ),
-                            itemCount: 6),
+                            itemCount: widget.ingredients.length),
                       ),
                     ]),
               ),
@@ -456,7 +462,7 @@ class _DishDetailsScreenState extends State<DishDetailsScreen> {
                               ),
                               // Padding(padding: EdgeInsets.only(right: 3)),
                               Text(
-                                "2.40",
+                                "${widget.price}",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 12),
                               )
