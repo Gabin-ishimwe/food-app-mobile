@@ -1,9 +1,10 @@
 import "package:flutter/material.dart";
 
+// typedef IsSelected = void Function(bool value);
 class CustomCheckBoxButton extends StatefulWidget {
   var label;
   var value;
-  bool isSelected;
+  var isSelected;
   CustomCheckBoxButton(
       {super.key,
       required this.label,

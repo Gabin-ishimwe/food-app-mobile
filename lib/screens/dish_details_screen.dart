@@ -5,7 +5,7 @@ import 'package:food_book_mobile/widgets/custom_radio_button.dart';
 class DishDetailsScreen extends StatefulWidget {
   String name;
   var image;
-  var price;
+  double price;
   String description;
   var choiceSize;
   var ingredients;
@@ -25,9 +25,22 @@ class DishDetailsScreen extends StatefulWidget {
 class _DishDetailsScreenState extends State<DishDetailsScreen> {
   bool addMessage = false;
   int checkSize = 0;
+  int itemCount = 1;
   var dishIngredients = [];
 
-  void _addIngredients(var value) {}
+  bool _addIngredients(var value) {
+    if (dishIngredients.contains(value)) {
+      setState(() {
+        dishIngredients.remove(value);
+      });
+      return false;
+    } else {
+      setState(() {
+        dishIngredients.add(value);
+      });
+      return true;
+    }
+  }
 
   void _addMessageFn() {
     setState(() {
@@ -78,6 +91,10 @@ class _DishDetailsScreenState extends State<DishDetailsScreen> {
           Container(
             width: MediaQuery.of(context).size.width,
             padding: EdgeInsets.only(top: 20),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(15),
+                    topLeft: Radius.circular(15))),
             child: Column(children: [
               Container(
                 width: MediaQuery.of(context).size.width,
@@ -211,58 +228,66 @@ class _DishDetailsScreenState extends State<DishDetailsScreen> {
                         child: ListView.separated(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
-                            itemBuilder: ((context, index) => Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      // Row(
-                                      //   children: [
-                                      //     Icon(
-                                      //       Icons.done_rounded,
-                                      //       color: Color(
-                                      //         0xFFF55349,
-                                      //       ),
-                                      //       size: 20,
-                                      //     ),
-                                      //     // Container(
-                                      //     //   width: 14,
-                                      //     //   height: 14,
-                                      //     //   decoration: BoxDecoration(
-                                      //     //       color: Colors.grey.shade100,
-                                      //     //       borderRadius: BorderRadius.all(
-                                      //     //           Radius.circular(5)),
-                                      //     //       border: Border.all(
-                                      //     //           color:
-                                      //     //               Colors.grey.shade400)),
-                                      //     // ),
-                                      //     Padding(
-                                      //         padding:
-                                      //             EdgeInsets.only(right: 10)),
-                                      //     Text(
-                                      //       '${widget.ingredients[index]}',
-                                      //       style: TextStyle(
-                                      //           color: Colors.grey,
-                                      //           fontSize: 13),
-                                      //     )
-                                      //   ],
-                                      // ),
-                                      CustomCheckBoxButton(
-                                          label: widget.ingredients[index],
-                                          value: null,
-                                          isSelected: true),
-                                      Row(
-                                        children: [
-                                          Icon(
-                                            Icons.attach_money,
-                                            size: 18,
-                                          ),
-                                          Text(
-                                            "${index + 12.52}",
-                                            style: TextStyle(fontSize: 14),
-                                          )
-                                        ],
-                                      )
-                                    ])),
+                            itemBuilder: ((context, index) => InkWell(
+                                  splashColor: Colors.transparent,
+                                  splashFactory: NoSplash.splashFactory,
+                                  onTap: () {
+                                    _addIngredients(index);
+                                  },
+                                  child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        // Row(
+                                        //   children: [
+                                        //     Icon(
+                                        //       Icons.done_rounded,
+                                        //       color: Color(
+                                        //         0xFFF55349,
+                                        //       ),
+                                        //       size: 20,
+                                        //     ),
+                                        //     // Container(
+                                        //     //   width: 14,
+                                        //     //   height: 14,
+                                        //     //   decoration: BoxDecoration(
+                                        //     //       color: Colors.grey.shade100,
+                                        //     //       borderRadius: BorderRadius.all(
+                                        //     //           Radius.circular(5)),
+                                        //     //       border: Border.all(
+                                        //     //           color:
+                                        //     //               Colors.grey.shade400)),
+                                        //     // ),
+                                        //     Padding(
+                                        //         padding:
+                                        //             EdgeInsets.only(right: 10)),
+                                        //     Text(
+                                        //       '${widget.ingredients[index]}',
+                                        //       style: TextStyle(
+                                        //           color: Colors.grey,
+                                        //           fontSize: 13),
+                                        //     )
+                                        //   ],
+                                        // ),
+                                        CustomCheckBoxButton(
+                                            label: widget.ingredients[index],
+                                            value: null,
+                                            isSelected: dishIngredients
+                                                .contains(index)),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.attach_money,
+                                              size: 18,
+                                            ),
+                                            Text(
+                                              "${index + 12.52}",
+                                              style: TextStyle(fontSize: 14),
+                                            )
+                                          ],
+                                        )
+                                      ]),
+                                )),
                             separatorBuilder: (context, index) => SizedBox(
                                   height: 15,
                                 ),
@@ -417,6 +442,13 @@ class _DishDetailsScreenState extends State<DishDetailsScreen> {
                               InkWell(
                                 splashColor: Colors.transparent,
                                 splashFactory: NoSplash.splashFactory,
+                                onTap: () {
+                                  setState(() {
+                                    if (itemCount > 1) {
+                                      itemCount -= 1;
+                                    }
+                                  });
+                                },
                                 child: Icon(
                                   Icons.remove,
                                   color: Colors.white,
@@ -424,13 +456,20 @@ class _DishDetailsScreenState extends State<DishDetailsScreen> {
                                 ),
                               ),
                               Text(
-                                '1',
+                                '${itemCount}',
                                 style: TextStyle(
                                     fontSize: 12, color: Colors.white),
                               ),
                               InkWell(
                                 splashColor: Colors.transparent,
                                 splashFactory: NoSplash.splashFactory,
+                                onTap: () {
+                                  setState(() {
+                                    if (itemCount >= 0) {
+                                      itemCount += 1;
+                                    }
+                                  });
+                                },
                                 child: Icon(Icons.add,
                                     color: Colors.white, size: 20),
                               ),
@@ -462,7 +501,7 @@ class _DishDetailsScreenState extends State<DishDetailsScreen> {
                               ),
                               // Padding(padding: EdgeInsets.only(right: 3)),
                               Text(
-                                "${widget.price}",
+                                "${(widget.price * itemCount).round()}",
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 12),
                               )

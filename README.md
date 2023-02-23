@@ -67,6 +67,9 @@ flutter run
   <img src="./images/readme/view_dishes.jpeg" width="100" />
   <img src="./images/readme/popular_dishes.jpeg" width="100" />
   <img src="./images/readme/main_dishes.jpeg" width="100" />
+  <img src="./images/readme/dish_details_1.png" width="100" />
+  <img src="./images/readme/dish_details_2.png" width="100" />
+  <img src="./images/readme/dish_details_3.png" width="100" />
   
 </p>
 
