@@ -24,9 +24,14 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+      backgroundColor: Color(0xFFF55349),
       body: Center(
           child: Container(
-        color: Color(0xFFF55349),
+        child: Icon(
+          Icons.food_bank_rounded,
+          color: Colors.white,
+          size: 65,
+        ),
       )),
       extendBodyBehindAppBar: true,
     ));
