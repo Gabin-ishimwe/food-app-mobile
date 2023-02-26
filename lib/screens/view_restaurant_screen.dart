@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_book_mobile/models/popular_dishes_model.dart';
 
 import '../models/popular_area_model.dart';
+import 'dish_details_screen.dart';
 
 class ViewRestaurantScreen extends StatefulWidget {
   String name;
@@ -269,51 +270,76 @@ class _ViewRestaurantScreenState extends State<ViewRestaurantScreen> {
                                       (MediaQuery.of(context).size.width / 2) /
                                           240),
                           itemBuilder: ((context, index) {
-                            return Container(
-                              width: MediaQuery.of(context).size.width,
-                              // margin: EdgeInsets.only(right: 10),
-                              // height: 300,
-                              child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Expanded(
-                                      child: Container(
-                                        // width: MediaQuery.of(context).size.width,
-                                        // height: 150,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                            image: DecorationImage(
-                                                image: AssetImage(
-                                                    PopularDishesModel
-                                                        .moreDishes[index]
-                                                        .image),
-                                                fit: BoxFit.cover)),
-                                      ),
-                                    ),
-                                    Padding(padding: EdgeInsets.only(top: 10)),
-                                    Text(
-                                      "${PopularDishesModel.moreDishes[index].name}",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: 14),
-                                    ),
-                                    Padding(padding: EdgeInsets.only(top: 5)),
-                                    Row(
-                                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Icon(
-                                          Icons.attach_money,
-                                          size: 20,
+                            return InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => DishDetailsScreen(
+                                              name: PopularDishesModel
+                                                  .moreDishes[index].name,
+                                              description: PopularDishesModel
+                                                  .moreDishes[index]
+                                                  .description,
+                                              image: PopularDishesModel
+                                                  .moreDishes[index].image,
+                                              choiceSize: PopularDishesModel
+                                                  .moreDishes[index].choiceSize,
+                                              ingredients: PopularDishesModel
+                                                  .moreDishes[index]
+                                                  .ingredients,
+                                              price: PopularDishesModel
+                                                  .moreDishes[index].price,
+                                            )));
+                              },
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                // margin: EdgeInsets.only(right: 10),
+                                // height: 300,
+                                child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                          // width: MediaQuery.of(context).size.width,
+                                          // height: 150,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              image: DecorationImage(
+                                                  image: AssetImage(
+                                                      PopularDishesModel
+                                                          .moreDishes[index]
+                                                          .image),
+                                                  fit: BoxFit.cover)),
                                         ),
-                                        Text(
-                                          '${PopularDishesModel.moreDishes[index].price}',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w600),
-                                        )
-                                      ],
-                                    ),
-                                  ]),
+                                      ),
+                                      Padding(
+                                          padding: EdgeInsets.only(top: 10)),
+                                      Text(
+                                        "${PopularDishesModel.moreDishes[index].name}",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 14),
+                                      ),
+                                      Padding(padding: EdgeInsets.only(top: 5)),
+                                      Row(
+                                        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Icon(
+                                            Icons.attach_money,
+                                            size: 20,
+                                          ),
+                                          Text(
+                                            '${PopularDishesModel.moreDishes[index].price}',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w600),
+                                          )
+                                        ],
+                                      ),
+                                    ]),
+                              ),
                             );
                           })),
                     ),
@@ -402,72 +428,101 @@ class _ViewRestaurantScreenState extends State<ViewRestaurantScreen> {
                               physics: NeverScrollableScrollPhysics(),
                               itemCount: PopularDishesModel.moreDishes.length,
                               itemBuilder: (context, index) {
-                                return Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 100,
-                                  child: Row(children: [
-                                    Container(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.3,
-                                        height: 100,
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                            image: DecorationImage(
-                                                image: AssetImage(
-                                                    PopularDishesModel
-                                                        .moreDishes[index]
-                                                        .image),
-                                                fit: BoxFit.cover))),
-                                    Padding(
-                                        padding: EdgeInsets.only(right: 15)),
-                                    Expanded(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          // Padding(padding: EdgeInsets.only(top: ))
-                                          Text(
-                                            PopularDishesModel
-                                                .moreDishes[index].name,
-                                            textAlign: TextAlign.left,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                                fontSize: 14),
-                                          ),
-                                          // Padding(padding: EdgeInsets.only(bottom: 2)),
-                                          Text(
-                                            PopularDishesModel
-                                                .moreDishes[index].description,
-                                            style: TextStyle(
-                                                color: Colors.grey,
-                                                fontSize: 12),
-                                          ),
-                                          // Padding(
-                                          //     padding:
-                                          //         EdgeInsets.only(bottom: 15)),
-                                          Row(
-                                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Icon(
-                                                Icons.attach_money,
-                                                size: 20,
-                                              ),
-                                              Text(
-                                                '${PopularDishesModel.moreDishes[index].price}',
-                                                style: TextStyle(
+                                return InkWell(
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                DishDetailsScreen(
+                                                  name: PopularDishesModel
+                                                      .moreDishes[index].name,
+                                                  description:
+                                                      PopularDishesModel
+                                                          .moreDishes[index]
+                                                          .description,
+                                                  image: PopularDishesModel
+                                                      .moreDishes[index].image,
+                                                  choiceSize: PopularDishesModel
+                                                      .moreDishes[index]
+                                                      .choiceSize,
+                                                  ingredients:
+                                                      PopularDishesModel
+                                                          .moreDishes[index]
+                                                          .ingredients,
+                                                  price: PopularDishesModel
+                                                      .moreDishes[index].price,
+                                                )));
+                                  },
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    height: 100,
+                                    child: Row(children: [
+                                      Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.3,
+                                          height: 100,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              image: DecorationImage(
+                                                  image: AssetImage(
+                                                      PopularDishesModel
+                                                          .moreDishes[index]
+                                                          .image),
+                                                  fit: BoxFit.cover))),
+                                      Padding(
+                                          padding: EdgeInsets.only(right: 15)),
+                                      Expanded(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            // Padding(padding: EdgeInsets.only(top: ))
+                                            Text(
+                                              PopularDishesModel
+                                                  .moreDishes[index].name,
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
                                                   fontWeight: FontWeight.w600,
+                                                  fontSize: 14),
+                                            ),
+                                            // Padding(padding: EdgeInsets.only(bottom: 2)),
+                                            Text(
+                                              PopularDishesModel
+                                                  .moreDishes[index]
+                                                  .description,
+                                              style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 12),
+                                            ),
+                                            // Padding(
+                                            //     padding:
+                                            //         EdgeInsets.only(bottom: 15)),
+                                            Row(
+                                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Icon(
+                                                  Icons.attach_money,
+                                                  size: 20,
                                                 ),
-                                              )
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ]),
+                                                Text(
+                                                  '${PopularDishesModel.moreDishes[index].price}',
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ]),
+                                  ),
                                 );
                               })),
                     ),
