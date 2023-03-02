@@ -30,13 +30,13 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
       onPanEnd: (details) {
         // scroll up pixelPerSecond increase
         print(details);
-        if (details.velocity.pixelsPerSecond.dy > thresholdScroll) {
+        if (details.velocity.pixelsPerSecond.dy < thresholdScroll) {
           setState(() {
             showBottomMenu = true;
           });
         }
         // scroll down pixelPerSecond descrease
-        else if (details.velocity.pixelsPerSecond.dy < -thresholdScroll) {
+        else if (details.velocity.pixelsPerSecond.dy > -thresholdScroll) {
           setState(() {
             showBottomMenu = false;
           });

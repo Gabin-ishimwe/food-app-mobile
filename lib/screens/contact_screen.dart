@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:flutter/services.dart';
+import 'package:food_book_mobile/screens/home_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
@@ -76,7 +77,11 @@ class _ContactScreenState extends State<ContactScreen> {
           ),
           const Padding(padding: EdgeInsets.symmetric(vertical: 16)),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return HomeScreen();
+              }));
+            },
             style: ElevatedButton.styleFrom(
                 backgroundColor: const Color.fromARGB(255, 235, 53, 34),
                 // backgroundColor: const Color(0xFFE1E1E1),
