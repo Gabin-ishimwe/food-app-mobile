@@ -101,6 +101,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                           TextFormField(
                             controller: signUpContoller.firstNameController,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "Enter your first name";
@@ -132,6 +134,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                           TextFormField(
                             controller: signUpContoller.lastNameContoller,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "Enter your last name";
@@ -164,6 +168,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           TextFormField(
                             keyboardType: TextInputType.emailAddress,
                             controller: signUpContoller.emailController,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "Enter your email";
@@ -199,6 +205,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           TextFormField(
                             keyboardType: TextInputType.emailAddress,
                             controller: signUpContoller.passwordController,
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
                             obscureText: toggle,
                             validator: (value) {
                               RegExp regex = RegExp(
@@ -250,12 +258,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             setState(() {
                               changeScreen = true;
                             });
-
-                            // submit when validation is collect
-                            // Navigator.push(context,
-                            //     MaterialPageRoute(builder: (context) {
-                            //   return ContactScreen();
-                            // }));
                           }
                         },
                         style: ElevatedButton.styleFrom(
@@ -335,13 +337,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ElevatedButton(
                         onPressed: () {
                           if (formState.currentState!.validate()) {
-                            signUpContoller.userRegister(
-                              signUpContoller.firstNameController.text.trim(),
-                              signUpContoller.lastNameContoller.text.trim(),
-                              signUpContoller.emailController.text.trim(),
-                              signUpContoller.passwordController.text.trim(),
-                              signUpContoller.phoneNumberController.text.trim(),
-                            );
+                            signUpContoller.registerWithemailAndPassword(
+                                signUpContoller.emailController.text.trim(),
+                                signUpContoller.passwordController.text.trim());
                           }
                         },
                         style: ElevatedButton.styleFrom(

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:food_book_mobile/controllers/sign_up_controller.dart';
 import 'package:food_book_mobile/widgets/bottom_nav_widget.dart';
 import 'package:food_book_mobile/widgets/popular_area_widget.dart';
 import 'package:food_book_mobile/widgets/popular_dishes_widget.dart';
+import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class HomeScreen extends StatefulWidget {
