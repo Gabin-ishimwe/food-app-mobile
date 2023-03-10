@@ -13,11 +13,11 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Future.delayed(Duration(seconds: 3), () {
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return OnboardingScreen();
-      }));
-    });
+    // Future.delayed(Duration(seconds: 3), () {
+    //   Navigator.push(context, MaterialPageRoute(builder: (context) {
+    //     return OnboardingScreen();
+    //   }));
+    // });
   }
 
   @override

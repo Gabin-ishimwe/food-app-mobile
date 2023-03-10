@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "866259480569",
+    "project_id": "food-book-mobile",
+    "storage_bucket": "food-book-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866259480569:android:4f943a0508a937b84f5728",
+        "android_client_info": {
+          "package_name": "com.example.food_book_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "866259480569-fpg17f0loii9qlsgbjg54nil256p52kb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDga37JMsm-DGjA61vAYiQaupyH1evQNjQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "866259480569-fpg17f0loii9qlsgbjg54nil256p52kb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
