@@ -16,18 +16,15 @@ class SignUpContoller extends GetxController {
   final phoneNumberController = TextEditingController();
 
   final authRepository = Get.put(AuthenticationRepository());
-  void userRegister(String firstName, String lastName, String email,
-      String password, String phoneNumber) {
-    print("object-----");
-    print(firstName);
-    print(lastName);
-    print(email);
-    print(password);
-    print(phoneNumber);
-  }
 
-  void registerWithemailAndPassword(String email, String password) {
-    authRepository.createUserWithEmailAndPassword(email, password);
+  Future<void> registerWithemailAndPassword(
+      String email, String password) async {
+    try {
+      await authRepository.createUserWithEmailAndPassword(email, password);
+    } catch (e) {
+      printError(info: "Register Error--------------------");
+      print(e);
+    }
   }
 
   void rand() {
