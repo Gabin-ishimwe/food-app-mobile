@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_book_mobile/repositories/authentication_controller.dart';
 import 'package:get/get.dart';
@@ -8,12 +9,13 @@ class SignInController extends GetxController {
 
   final authRepository = Get.put(AuthenticationRepository());
 
-  Future<void> userSignIn(String email, String password) async {
+  Future<UserCredential> userSignIn(String email, String password) async {
     try {
-      await authRepository.loginWithEmailAndPassword(email, password);
+      return await authRepository.loginWithEmailAndPassword(email, password);
     } catch (e) {
       printError(info: "Login error---------------------------");
       print(e);
+      throw e;
     }
   }
 }

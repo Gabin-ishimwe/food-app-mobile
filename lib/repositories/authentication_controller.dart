@@ -23,10 +23,10 @@ class AuthenticationRepository extends GetxController {
         : Get.offAll(() => HomeScreen());
   }
 
-  Future<void> createUserWithEmailAndPassword(
+  Future<UserCredential> createUserWithEmailAndPassword(
       String email, String password) async {
     try {
-      await _auth.createUserWithEmailAndPassword(
+      return await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       firebaseUser.value != null
           ? Get.offAll(() => HomeScreen())
@@ -42,9 +42,11 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-  Future<void> loginWithEmailAndPassword(String email, String password) async {
+  Future<UserCredential> loginWithEmailAndPassword(
+      String email, String password) async {
     try {
-      await _auth.signInWithEmailAndPassword(email: email, password: password);
+      return await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
     } on FirebaseAuthException catch (e) {
       final exception = SignInWithEmailAndPasswordException.code(e.code);
       print("Firebase exception " + exception.message);

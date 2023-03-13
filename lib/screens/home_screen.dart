@@ -14,6 +14,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  SignUpContoller signUpContoller = Get.put(SignUpContoller());
   int currentIndex = 0;
   List<Widget> pages = [
     Text("Home"),
@@ -94,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: EdgeInsets.zero,
                         constraints: BoxConstraints(),
                         onPressed: () {
-                          print("menu");
+                          signUpContoller.userLogout();
                         },
                         icon: const Icon(
                           Icons.menu,
