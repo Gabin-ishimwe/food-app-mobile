@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:food_book_mobile/controllers/sign_in_controller.dart';
+import 'package:food_book_mobile/repositories/authentication_controller.dart';
 import 'package:food_book_mobile/screens/home_screen.dart';
 import 'package:food_book_mobile/screens/sign_up_screen.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:email_validator/email_validator.dart';
 
@@ -12,10 +15,12 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  var emailController = TextEditingController();
-  var passwordController = TextEditingController();
+  SignInController signInController = Get.put(SignInController());
+  AuthenticationRepository authenticationRepository =
+      Get.put(AuthenticationRepository());
   var toggle = true;
   var formState = GlobalKey<FormState>();
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -81,7 +86,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 TextFormField(
                   keyboardType: TextInputType.emailAddress,
-                  controller: emailController,
+                  controller: signInController.emailController,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Enter your email";
@@ -114,7 +119,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 TextFormField(
                   keyboardType: TextInputType.emailAddress,
-                  controller: passwordController,
+                  controller: signInController.passwordController,
                   obscureText: toggle,
                   validator: (value) {
                     RegExp regex = RegExp(
@@ -156,13 +161,23 @@ class _SignInScreenState extends State<SignInScreen> {
             const Padding(padding: EdgeInsets.symmetric(vertical: 16)),
             ElevatedButton(
               onPressed: () {
+                setState(() {
+                  isLoading = true;
+                });
                 if (formState.currentState!.validate()) {
-                  print("success");
-                  // emailController.clear();
-                  // passwordController.clear();
-                  Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return HomeScreen();
-                  }));
+                  signInController
+                      .userSignIn(signInController.emailController.text,
+                          signInController.passwordController.text)
+                      .then((value) => {
+                            setState(() {
+                              isLoading = false;
+                            })
+                          })
+                      .catchError((e) => {
+                            setState(() {
+                              isLoading = false;
+                            }),
+                          });
                 }
               },
               style: ElevatedButton.styleFrom(
@@ -173,16 +188,24 @@ class _SignInScreenState extends State<SignInScreen> {
                   minimumSize: const Size.fromHeight(28),
                   shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(8)))),
-              child: Text(
-                "Continue",
-                style: GoogleFonts.poppins(
-                    textStyle: const TextStyle(
-                      fontWeight: FontWeight.w600,
-                      // color: Color(0xFFC4C4C4),
-                      color: Colors.white,
+              child: isLoading
+                  ? SizedBox(
+                      height: 24,
+                      width: 24,
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                      ),
+                    )
+                  : Text(
+                      "Continue",
+                      style: GoogleFonts.poppins(
+                          textStyle: const TextStyle(
+                            fontWeight: FontWeight.w600,
+                            // color: Color(0xFFC4C4C4),
+                            color: Colors.white,
+                          ),
+                          fontSize: 16),
                     ),
-                    fontSize: 16),
-              ),
             ),
           ]),
         ),

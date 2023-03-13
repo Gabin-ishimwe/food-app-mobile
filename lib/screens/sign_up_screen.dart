@@ -19,6 +19,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   SignUpContoller signUpContoller = Get.put(SignUpContoller());
   var toggle = true;
   var formState = GlobalKey<FormState>();
+  bool isLoading = false;
   var changeScreen = false;
   var maskFormatter = MaskTextInputFormatter(
       mask: '+### ###-###-###',
@@ -336,10 +337,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           padding: EdgeInsets.symmetric(vertical: 16)),
                       ElevatedButton(
                         onPressed: () {
+                          setState(() {
+                            isLoading = true;
+                          });
                           if (formState.currentState!.validate()) {
-                            signUpContoller.registerWithemailAndPassword(
-                                signUpContoller.emailController.text.trim(),
-                                signUpContoller.passwordController.text.trim());
+                            signUpContoller
+                                .registerWithemailAndPassword(
+                                    signUpContoller.emailController.text.trim(),
+                                    signUpContoller.passwordController.text
+                                        .trim())
+                                .then((value) => {
+                                      setState(() {
+                                        isLoading = false;
+                                      })
+                                    })
+                                .catchError((e) {
+                              setState(() {
+                                isLoading = false;
+                              });
+                            });
                           }
                         },
                         style: ElevatedButton.styleFrom(
@@ -352,16 +368,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             shape: const RoundedRectangleBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(8)))),
-                        child: Text(
-                          "Sign up",
-                          style: GoogleFonts.poppins(
-                              textStyle: const TextStyle(
-                                fontWeight: FontWeight.w600,
-                                // color: Color(0xFFC4C4C4),
-                                color: Colors.white,
+                        child: isLoading
+                            ? SizedBox(
+                                height: 24,
+                                width: 24,
+                                child: CircularProgressIndicator(
+                                  color: Colors.white,
+                                ),
+                              )
+                            : Text(
+                                "Sign up",
+                                style: GoogleFonts.poppins(
+                                    textStyle: const TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      // color: Color(0xFFC4C4C4),
+                                      color: Colors.white,
+                                    ),
+                                    fontSize: 16),
                               ),
-                              fontSize: 16),
-                        ),
                       ),
                     ],
                   )
