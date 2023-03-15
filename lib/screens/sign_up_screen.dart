@@ -347,14 +347,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     signUpContoller.passwordController.text
                                         .trim())
                                 .then((value) => {
+                                      print(value),
                                       setState(() {
                                         isLoading = false;
-                                      })
+                                      }),
                                     })
                                 .catchError((e) {
                               setState(() {
                                 isLoading = false;
                               });
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      backgroundColor:
+                                          Color.fromARGB(255, 235, 53, 34),
+                                      behavior: SnackBarBehavior.floating,
+                                      content: Row(children: [
+                                        Icon(
+                                          Icons.error,
+                                          color: Colors.white,
+                                        ),
+                                        SizedBox(
+                                          width: 8,
+                                        ),
+                                        Text(
+                                          "Server Error, Try again !!!",
+                                          style: GoogleFonts.poppins(
+                                              color: Colors.white,
+                                              fontSize: 12),
+                                        ),
+                                      ])));
+                              throw e;
                             });
                           }
                         },

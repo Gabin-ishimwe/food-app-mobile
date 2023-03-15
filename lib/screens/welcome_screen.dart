@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:food_book_mobile/repositories/authentication_controller.dart';
 import 'package:food_book_mobile/screens/sign_in_screen.dart';
 import 'package:food_book_mobile/screens/sign_up_screen.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -14,6 +16,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   bool showBottomMenu = false;
   var thresholdScroll =
       100; // min pixel/second to be considered as screen scroll
+
+  final authRepository = Get.put(AuthenticationRepository());
 
   void closeBottomMenu() {
     setState(() {
@@ -140,7 +144,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         const Padding(
                             padding: EdgeInsets.symmetric(vertical: 6)),
                         OutlinedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            authRepository.googleLogin();
+                          },
                           style: OutlinedButton.styleFrom(
                               backgroundColor: Colors.white,
                               side: const BorderSide(

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:food_book_mobile/repositories/authentication_controller.dart';
 import 'package:get/get.dart';
@@ -17,13 +18,15 @@ class SignUpContoller extends GetxController {
 
   final authRepository = Get.put(AuthenticationRepository());
 
-  Future<void> registerWithemailAndPassword(
+  Future<Object> registerWithemailAndPassword(
       String email, String password) async {
     try {
-      await authRepository.createUserWithEmailAndPassword(email, password);
+      return await authRepository.createUserWithEmailAndPassword(
+          email, password);
     } catch (e) {
       printError(info: "Register Error--------------------");
       print(e);
+      throw e;
     }
   }
 

@@ -171,12 +171,32 @@ class _SignInScreenState extends State<SignInScreen> {
                       .then((value) => {
                             setState(() {
                               isLoading = false;
-                            })
+                            }),
                           })
                       .catchError((e) => {
                             setState(() {
                               isLoading = false;
                             }),
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                backgroundColor:
+                                    Color.fromARGB(255, 235, 53, 34),
+                                behavior: SnackBarBehavior.floating,
+                                content: Row(children: [
+                                  Icon(
+                                    Icons.error,
+                                    color: Colors.white,
+                                  ),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  Text(
+                                    "Invalid Credentials, Try again !!!",
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.white,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600),
+                                  ),
+                                ])))
                           });
                 }
               },
