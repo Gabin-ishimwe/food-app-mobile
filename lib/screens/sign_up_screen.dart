@@ -376,6 +376,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                               fontSize: 12),
                                         ),
                                       ])));
+                              throw e;
                             });
                           }
                         },
