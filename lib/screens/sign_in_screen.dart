@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_book_mobile/controllers/sign_in_controller.dart';
+import 'package:food_book_mobile/controllers/auth_controller.dart';
 import 'package:food_book_mobile/repositories/authentication_controller.dart';
-import 'package:food_book_mobile/screens/home_screen.dart';
 import 'package:food_book_mobile/screens/sign_up_screen.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,7 +14,7 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
-  SignInController signInController = Get.put(SignInController());
+  AuthController authController = Get.put(AuthController());
   AuthenticationRepository authenticationRepository =
       Get.put(AuthenticationRepository());
   var toggle = true;
@@ -86,7 +85,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 TextFormField(
                   keyboardType: TextInputType.emailAddress,
-                  controller: signInController.emailController,
+                  controller: authController.emailController,
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Enter your email";
@@ -119,7 +118,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 TextFormField(
                   keyboardType: TextInputType.emailAddress,
-                  controller: signInController.passwordController,
+                  controller: authController.passwordController,
                   obscureText: toggle,
                   validator: (value) {
                     RegExp regex = RegExp(
@@ -165,9 +164,9 @@ class _SignInScreenState extends State<SignInScreen> {
                   isLoading = true;
                 });
                 if (formState.currentState!.validate()) {
-                  signInController
-                      .userSignIn(signInController.emailController.text,
-                          signInController.passwordController.text)
+                  authController
+                      .userSignIn(authController.emailController.text,
+                          authController.passwordController.text)
                       .then((value) => {
                             setState(() {
                               isLoading = false;

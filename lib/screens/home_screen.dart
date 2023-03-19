@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_book_mobile/controllers/sign_up_controller.dart';
+import 'package:food_book_mobile/controllers/auth_controller.dart';
 import 'package:food_book_mobile/widgets/bottom_nav_widget.dart';
 import 'package:food_book_mobile/widgets/popular_area_widget.dart';
 import 'package:food_book_mobile/widgets/popular_dishes_widget.dart';
@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  SignUpContoller signUpContoller = Get.put(SignUpContoller());
+  AuthController AuthController = Get.put(AuthController());
   int currentIndex = 0;
   List<Widget> pages = [
     Text("Home"),
@@ -95,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: EdgeInsets.zero,
                         constraints: BoxConstraints(),
                         onPressed: () {
-                          signUpContoller.userLogout();
+                          AuthController.userLogout();
                         },
                         icon: const Icon(
                           Icons.menu,

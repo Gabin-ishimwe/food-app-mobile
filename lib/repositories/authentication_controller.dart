@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:food_book_mobile/exceptions/sign_in_exception.dart';
+import 'package:food_book_mobile/screens/checkout_screen.dart';
 import 'package:food_book_mobile/screens/home_screen.dart';
 import 'package:food_book_mobile/screens/onboarding_screen.dart';
 import 'package:food_book_mobile/screens/welcome_screen.dart';
@@ -24,6 +25,7 @@ class AuthenticationRepository extends GetxController {
   _setInitialScreen(User? user) {
     user == null
         ? Get.offAll(() => OnboardingScreen())
+        // : Get.offAll(() => CheckoutScreen());
         : Get.offAll(() => HomeScreen());
   }
 
