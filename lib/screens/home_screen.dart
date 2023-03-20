@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  AuthController AuthController = Get.put(AuthController());
+  AuthController authController = Get.put(AuthController());
   int currentIndex = 0;
   List<Widget> pages = [
     Text("Home"),
@@ -95,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: EdgeInsets.zero,
                         constraints: BoxConstraints(),
                         onPressed: () {
-                          AuthController.userLogout();
+                          authController.userLogout();
                         },
                         icon: const Icon(
                           Icons.menu,
