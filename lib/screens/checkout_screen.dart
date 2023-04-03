@@ -18,15 +18,15 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
         child: Scaffold(
       body: SingleChildScrollView(
           child: Container(
-        margin: EdgeInsets.symmetric(vertical: 20),
+        margin: const EdgeInsets.only(top: 20),
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(children: [
                 Row(
                   // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
+                  children: const [
                     Icon(
                       Icons.arrow_back_ios,
                       size: 18,
@@ -42,7 +42,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     Text("")
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 SvgPicture.asset(
@@ -62,19 +62,19 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 // )
               ]),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
-            Divider(
+            const Divider(
               thickness: 1,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
-              margin: EdgeInsets.symmetric(horizontal: 20),
+              margin: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(children: [
-                Align(
+                const Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
                     "Your order",
@@ -82,26 +82,32 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         color: Colors.grey, fontWeight: FontWeight.w500),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Container(
                     // padding: EdgeInsets.only(bottom: 20),
                     child: ListView.separated(
-                        separatorBuilder: (context, index) => SizedBox(
+                        separatorBuilder: (context, index) => const SizedBox(
                               height: 15,
                             ),
                         shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemCount: PopularDishesModel.moreDishes.length,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount:
+                            PopularDishesModel.moreDishes.sublist(1, 4).length,
                         itemBuilder: (context, index) {
                           return Container(
                             width: MediaQuery.of(context).size.width,
-                            padding: EdgeInsets.all(10),
+                            padding: const EdgeInsets.all(10),
                             decoration: BoxDecoration(
+                                color: Colors.white,
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(20)),
-                                boxShadow: [BoxShadow()]),
+                                    const BorderRadius.all(Radius.circular(10)),
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: Colors.black.withOpacity(0.1),
+                                      blurRadius: 2)
+                                ]),
                             child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -118,7 +124,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                                   PopularDishesModel
                                                       .moreDishes[index].image),
                                               fit: BoxFit.cover))),
-                                  Padding(padding: EdgeInsets.only(right: 15)),
+                                  const Padding(
+                                      padding: EdgeInsets.only(right: 15)),
                                   Expanded(
                                     flex: 2,
                                     child: Column(
@@ -129,35 +136,34 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                         Text(
                                           PopularDishesModel
                                               .moreDishes[index].name,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               fontWeight: FontWeight.w600,
                                               fontSize: 14),
                                         ),
                                         // Padding(padding: EdgeInsets.only(bottom: 2)),
-                                        Text(
-                                          PopularDishesModel
-                                              .moreDishes[index].description,
+                                        const Text(
+                                          'Special message about this dish',
                                           style: TextStyle(
                                             color: Colors.grey,
                                             fontSize: 12,
                                           ),
                                         ),
-                                        Padding(
+                                        const Padding(
                                             padding:
                                                 EdgeInsets.only(bottom: 10)),
                                         Row(
                                           children: [
-                                            Icon(
+                                            const Icon(
                                               Icons.attach_money_rounded,
                                               color: Colors.red,
                                               size: 18,
                                             ),
-                                            Padding(
+                                            const Padding(
                                                 padding:
                                                     EdgeInsets.only(right: 1)),
                                             Text(
                                               "${PopularDishesModel.moreDishes[index].price}",
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.bold,
                                                   color: Colors.red),
@@ -184,31 +190,31 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                               });
                                             },
                                             child: Container(
-                                              padding: EdgeInsets.all(2),
+                                              padding: const EdgeInsets.all(2),
                                               decoration: BoxDecoration(
                                                   color: Colors.red
                                                       .withOpacity(.2),
                                                   borderRadius:
-                                                      BorderRadius.all(
+                                                      const BorderRadius.all(
                                                           Radius.circular(5))),
-                                              child: Icon(
+                                              child: const Icon(
                                                 Icons.remove,
                                                 color: Colors.red,
                                                 size: 18,
                                               ),
                                             ),
                                           ),
-                                          Padding(
+                                          const Padding(
                                               padding:
                                                   EdgeInsets.only(right: 8)),
                                           Text(
-                                            '${itemCount}',
-                                            style: TextStyle(
+                                            '$itemCount',
+                                            style: const TextStyle(
                                                 fontSize: 13,
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.w600),
                                           ),
-                                          Padding(
+                                          const Padding(
                                               padding:
                                                   EdgeInsets.only(right: 8)),
                                           InkWell(
@@ -223,13 +229,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                               });
                                             },
                                             child: Container(
-                                              padding: EdgeInsets.all(3),
-                                              decoration: BoxDecoration(
+                                              padding: const EdgeInsets.all(3),
+                                              decoration: const BoxDecoration(
                                                   color: Colors.red,
                                                   borderRadius:
                                                       BorderRadius.all(
                                                           Radius.circular(5))),
-                                              child: Icon(Icons.add,
+                                              child: const Icon(Icons.add,
                                                   color: Colors.white,
                                                   size: 16),
                                             ),
@@ -239,6 +245,141 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                 ]),
                           );
                         }))
+              ]),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            const Divider(
+              thickness: 1,
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "Subtotal (3 items)",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Row(
+                      children: const [
+                        Icon(
+                          Icons.attach_money_rounded,
+                          color: Colors.red,
+                          size: 18,
+                        ),
+                        Padding(padding: EdgeInsets.only(right: 1)),
+                        Text(
+                          "80.5",
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.red),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "Service fees",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Row(
+                      children: const [
+                        Icon(
+                          Icons.attach_money_rounded,
+                          color: Colors.red,
+                          size: 18,
+                        ),
+                        Padding(padding: EdgeInsets.only(right: 1)),
+                        Text(
+                          "5",
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.red),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ]),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              decoration: BoxDecoration(color: Colors.white, boxShadow: [
+                BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    offset: const Offset(0, 2),
+                    blurRadius: 4,
+                    spreadRadius: 2)
+              ]),
+              child: Column(children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      "Total: ",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Row(
+                      children: const [
+                        Icon(
+                          Icons.attach_money_rounded,
+                          color: Colors.red,
+                          size: 18,
+                        ),
+                        Padding(padding: EdgeInsets.only(right: 1)),
+                        Text(
+                          "85",
+                          style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.red),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                InkWell(
+                  onTap: () {
+                    print("ordering....");
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    padding: const EdgeInsets.all(15),
+                    decoration: const BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.all(Radius.circular(10))),
+                    child: const Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Order",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                )
               ]),
             )
           ],
