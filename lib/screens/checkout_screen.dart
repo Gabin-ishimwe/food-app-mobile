@@ -99,12 +99,16 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         itemBuilder: (context, index) {
                           return Slidable(
                             endActionPane: ActionPane(
+                              extentRatio: 0.3,
                               motion: const StretchMotion(),
                               children: [
                                 SlidableAction(
-                                  backgroundColor: Colors.red,
-                                  icon: Icons.delete,
-                                  label: "Delete",
+                                  foregroundColor: Colors.red,
+                                  autoClose: true,
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(10)),
+                                  backgroundColor: Colors.red.withOpacity(0.2),
+                                  icon: Icons.delete_outlined,
                                   onPressed: (context) {
                                     print("delete button");
                                   },
