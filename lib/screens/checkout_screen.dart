@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import "package:flutter_svg/flutter_svg.dart";
 
 import '../models/popular_dishes_model.dart';
@@ -96,153 +97,174 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         itemCount:
                             PopularDishesModel.moreDishes.sublist(1, 4).length,
                         itemBuilder: (context, index) {
-                          return Container(
-                            width: MediaQuery.of(context).size.width,
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(10)),
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Colors.black.withOpacity(0.1),
-                                      blurRadius: 2)
-                                ]),
-                            child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Container(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.2,
-                                      height: 70,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                          image: DecorationImage(
-                                              image: AssetImage(
-                                                  PopularDishesModel
-                                                      .moreDishes[index].image),
-                                              fit: BoxFit.cover))),
-                                  const Padding(
-                                      padding: EdgeInsets.only(right: 15)),
-                                  Expanded(
-                                    flex: 2,
-                                    child: Column(
-                                      // mainAxisAlignment: MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          PopularDishesModel
-                                              .moreDishes[index].name,
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.w600,
-                                              fontSize: 14),
-                                        ),
-                                        // Padding(padding: EdgeInsets.only(bottom: 2)),
-                                        const Text(
-                                          'Special message about this dish',
-                                          style: TextStyle(
-                                            color: Colors.grey,
-                                            fontSize: 12,
-                                          ),
-                                        ),
-                                        const Padding(
-                                            padding:
-                                                EdgeInsets.only(bottom: 10)),
-                                        Row(
-                                          children: [
-                                            const Icon(
-                                              Icons.attach_money_rounded,
-                                              color: Colors.red,
-                                              size: 18,
-                                            ),
-                                            const Padding(
-                                                padding:
-                                                    EdgeInsets.only(right: 1)),
-                                            Text(
-                                              "${PopularDishesModel.moreDishes[index].price}",
-                                              style: const TextStyle(
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.red),
-                                            )
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
+                          return Slidable(
+                            endActionPane: ActionPane(
+                              motion: const StretchMotion(),
+                              children: [
+                                SlidableAction(
+                                  backgroundColor: Colors.red,
+                                  icon: Icons.delete,
+                                  label: "Delete",
+                                  onPressed: (context) {
+                                    print("delete button");
+                                  },
+                                )
+                              ],
+                            ),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(10)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: Colors.black.withOpacity(0.1),
+                                        blurRadius: 2)
+                                  ]),
+                              child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.2,
+                                        height: 70,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            image: DecorationImage(
+                                                image: AssetImage(
+                                                    PopularDishesModel
+                                                        .moreDishes[index]
+                                                        .image),
+                                                fit: BoxFit.cover))),
+                                    const Padding(
+                                        padding: EdgeInsets.only(right: 15)),
+                                    Expanded(
+                                      flex: 2,
+                                      child: Column(
+                                        // mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          InkWell(
-                                            splashColor: Colors.transparent,
-                                            splashFactory:
-                                                NoSplash.splashFactory,
-                                            onTap: () {
-                                              setState(() {
-                                                if (itemCount > 1) {
-                                                  itemCount -= 1;
-                                                }
-                                              });
-                                            },
-                                            child: Container(
-                                              padding: const EdgeInsets.all(2),
-                                              decoration: BoxDecoration(
-                                                  color: Colors.red
-                                                      .withOpacity(.2),
-                                                  borderRadius:
-                                                      const BorderRadius.all(
-                                                          Radius.circular(5))),
-                                              child: const Icon(
-                                                Icons.remove,
+                                          Text(
+                                            PopularDishesModel
+                                                .moreDishes[index].name,
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 14),
+                                          ),
+                                          // Padding(padding: EdgeInsets.only(bottom: 2)),
+                                          const Text(
+                                            'Special message about this dish',
+                                            style: TextStyle(
+                                              color: Colors.grey,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                          const Padding(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 10)),
+                                          Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.attach_money_rounded,
                                                 color: Colors.red,
                                                 size: 18,
                                               ),
-                                            ),
+                                              const Padding(
+                                                  padding: EdgeInsets.only(
+                                                      right: 1)),
+                                              Text(
+                                                "${PopularDishesModel.moreDishes[index].price}",
+                                                style: const TextStyle(
+                                                    fontSize: 12,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.red),
+                                              )
+                                            ],
                                           ),
-                                          const Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 8)),
-                                          Text(
-                                            '$itemCount',
-                                            style: const TextStyle(
-                                                fontSize: 13,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.w600),
-                                          ),
-                                          const Padding(
-                                              padding:
-                                                  EdgeInsets.only(right: 8)),
-                                          InkWell(
-                                            splashColor: Colors.transparent,
-                                            splashFactory:
-                                                NoSplash.splashFactory,
-                                            onTap: () {
-                                              setState(() {
-                                                if (itemCount >= 0) {
-                                                  itemCount += 1;
-                                                }
-                                              });
-                                            },
-                                            child: Container(
-                                              padding: const EdgeInsets.all(3),
-                                              decoration: const BoxDecoration(
+                                        ],
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            InkWell(
+                                              splashColor: Colors.transparent,
+                                              splashFactory:
+                                                  NoSplash.splashFactory,
+                                              onTap: () {
+                                                setState(() {
+                                                  if (itemCount > 1) {
+                                                    itemCount -= 1;
+                                                  }
+                                                });
+                                              },
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.all(2),
+                                                decoration: BoxDecoration(
+                                                    color: Colors.red
+                                                        .withOpacity(.2),
+                                                    borderRadius:
+                                                        const BorderRadius.all(
+                                                            Radius.circular(
+                                                                5))),
+                                                child: const Icon(
+                                                  Icons.remove,
                                                   color: Colors.red,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(5))),
-                                              child: const Icon(Icons.add,
-                                                  color: Colors.white,
-                                                  size: 16),
+                                                  size: 18,
+                                                ),
+                                              ),
                                             ),
-                                          ),
-                                        ]),
-                                  ),
-                                ]),
+                                            const Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 8)),
+                                            Text(
+                                              '$itemCount',
+                                              style: const TextStyle(
+                                                  fontSize: 13,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            const Padding(
+                                                padding:
+                                                    EdgeInsets.only(right: 8)),
+                                            InkWell(
+                                              splashColor: Colors.transparent,
+                                              splashFactory:
+                                                  NoSplash.splashFactory,
+                                              onTap: () {
+                                                setState(() {
+                                                  if (itemCount >= 0) {
+                                                    itemCount += 1;
+                                                  }
+                                                });
+                                              },
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.all(3),
+                                                decoration: const BoxDecoration(
+                                                    color: Colors.red,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                5))),
+                                                child: const Icon(Icons.add,
+                                                    color: Colors.white,
+                                                    size: 16),
+                                              ),
+                                            ),
+                                          ]),
+                                    ),
+                                  ]),
+                            ),
                           );
                         }))
               ]),
