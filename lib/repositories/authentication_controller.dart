@@ -1,8 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:food_book_mobile/exceptions/sign_in_exception.dart';
+import 'package:food_book_mobile/screens/checkout_screen.dart';
 import 'package:food_book_mobile/screens/home_screen.dart';
-import 'package:food_book_mobile/screens/onboarding_screen.dart';
-import 'package:food_book_mobile/screens/welcome_screen.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -23,8 +22,9 @@ class AuthenticationRepository extends GetxController {
 
   _setInitialScreen(User? user) {
     user == null
-        ? Get.offAll(() => OnboardingScreen())
-        : Get.offAll(() => HomeScreen());
+        // ? Get.offAll(() => OnboardingScreen())
+        ? Get.offAll(() => const CheckoutScreen())
+        : Get.offAll(() => const HomeScreen());
   }
 
   Future<UserCredential> createUserWithEmailAndPassword(
@@ -37,11 +37,11 @@ class AuthenticationRepository extends GetxController {
       //     : Get.offAll(() => OnboardingScreen());
     } on FirebaseAuthException catch (e) {
       final exception = SignInWithEmailAndPasswordException.code(e.code);
-      print("Firebase exception " + exception.message);
+      print("Firebase exception ${exception.message}");
       throw exception;
     } catch (_) {
       final exception = SignInWithEmailAndPasswordException();
-      print("exception " + exception.message);
+      print("exception ${exception.message}");
       throw exception;
     }
   }
@@ -53,11 +53,11 @@ class AuthenticationRepository extends GetxController {
           email: email, password: password);
     } on FirebaseAuthException catch (e) {
       final exception = SignInWithEmailAndPasswordException.code(e.code);
-      print("Firebase exception " + exception.message);
+      print("Firebase exception ${exception.message}");
       throw exception;
     } catch (_) {
       final exception = SignInWithEmailAndPasswordException();
-      print("exception " + exception.message);
+      print("exception ${exception.message}");
       throw exception;
     }
   }
@@ -66,11 +66,11 @@ class AuthenticationRepository extends GetxController {
     try {
       await googleSignIn.signOut();
       await _auth.signOut();
-    } on FirebaseAuthException catch (e) {
-      throw e;
+    } on FirebaseAuthException {
+      rethrow;
     } catch (e) {
       final exception = SignInWithEmailAndPasswordException();
-      print("exception " + exception.message);
+      print("exception ${exception.message}");
       throw exception;
     }
   }
@@ -88,7 +88,7 @@ class AuthenticationRepository extends GetxController {
 
       return await _auth.signInWithCredential(credentials);
     } catch (e) {
-      throw e;
+      rethrow;
     }
   }
 

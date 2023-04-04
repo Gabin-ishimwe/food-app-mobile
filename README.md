@@ -70,6 +70,7 @@ flutter run
   <img src="./images/readme/dish_details_1.png" width="100" />
   <img src="./images/readme/dish_details_2.png" width="100" />
   <img src="./images/readme/dish_details_3.png" width="100" />
+  <img src="./images/readme/checkout_screen.png" width="100" />
   
 </p>
 

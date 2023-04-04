@@ -39,6 +39,8 @@ dependencies:
   firebase_auth: ^4.2.9
   get: ^4.6.5
   google_sign_in: ^6.0.2
+  cloud_firestore: ^4.4.5
+  flutter_slidable: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +83,7 @@ flutter:
     - images/welcome_screen/background.png
     - images/welcome_screen/google.png
     - images/home_screen/
+    - images/checkout_screen/online_payment.svg
     # - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

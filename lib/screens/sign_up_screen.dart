@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:food_book_mobile/controllers/sign_up_controller.dart';
+import 'package:food_book_mobile/controllers/auth_controller.dart';
+import 'package:food_book_mobile/models/user_model.dart';
 import 'package:food_book_mobile/screens/contact_screen.dart';
 import 'package:food_book_mobile/screens/sign_in_screen.dart';
 import 'package:get/get.dart';
@@ -16,7 +17,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  SignUpContoller signUpContoller = Get.put(SignUpContoller());
+  AuthController authController = Get.put(AuthController());
   var toggle = true;
   var formState = GlobalKey<FormState>();
   bool isLoading = false;
@@ -101,7 +102,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             style: GoogleFonts.poppins(fontSize: 12),
                           ),
                           TextFormField(
-                            controller: signUpContoller.firstNameController,
+                            controller: authController.firstNameController,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             validator: (value) {
@@ -134,7 +135,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             style: GoogleFonts.poppins(fontSize: 12),
                           ),
                           TextFormField(
-                            controller: signUpContoller.lastNameContoller,
+                            controller: authController.lastNameContoller,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             validator: (value) {
@@ -168,7 +169,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                           TextFormField(
                             keyboardType: TextInputType.emailAddress,
-                            controller: signUpContoller.emailController,
+                            controller: authController.emailController,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             validator: (value) {
@@ -205,7 +206,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                           TextFormField(
                             keyboardType: TextInputType.emailAddress,
-                            controller: signUpContoller.passwordController,
+                            controller: authController.passwordController,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             obscureText: toggle,
@@ -253,7 +254,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           padding: EdgeInsets.symmetric(vertical: 16)),
                       ElevatedButton(
                         onPressed: () {
-                          // signUpContoller.rand();
+                          // AuthController.rand();
 
                           if (formState.currentState!.validate()) {
                             setState(() {
@@ -311,7 +312,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           TextFormField(
                             keyboardType: TextInputType.number,
                             inputFormatters: [maskFormatter],
-                            controller: signUpContoller.phoneNumberController,
+                            controller: authController.phoneNumberController,
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return "Phone number is required";
@@ -341,11 +342,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             isLoading = true;
                           });
                           if (formState.currentState!.validate()) {
-                            signUpContoller
-                                .registerWithemailAndPassword(
-                                    signUpContoller.emailController.text.trim(),
-                                    signUpContoller.passwordController.text
-                                        .trim())
+                            UserModel user = UserModel(
+                                firstName: authController
+                                    .firstNameController.text
+                                    .trim(),
+                                lastName: authController.lastNameContoller.text
+                                    .trim(),
+                                email:
+                                    authController.emailController.text.trim(),
+                                password: authController.passwordController.text
+                                    .trim(),
+                                phoneNo: authController
+                                    .phoneNumberController.text
+                                    .trim());
+                            authController
+                                .createUser(user)
                                 .then((value) => {
                                       print(value),
                                       setState(() {
